@@ -48,7 +48,7 @@ namespace itk
  * \beta = \frac{1}{N} \left( \frac{5}{8} - \left( \frac{3}{8} + \frac{1}{4} \cdot \cos^2\left(\frac{2\pi}{N} \right)\right) \right)
  * \f]
  *
- * \ingroup ITKQuadEdgeMeshFiltering
+ * \ingroup itkSubdivisionQuadEdgeMeshFilter
  */
 template< typename TInputMesh, typename TOutputMesh >
 class LoopTriangleCellSubdivisionQuadEdgeMeshFilter:

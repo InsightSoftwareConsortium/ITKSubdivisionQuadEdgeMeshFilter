@@ -9,7 +9,7 @@ itkTriangleEdgeCellSubdivisionQuadEdgeMeshFilterTest.cxx
 
 CreateTestDriver(itkSubdivisionQuadEdgeMeshFilter  "${itkSubdivisionQuadEdgeMeshFilter-Test_LIBRARIES}" "${itkSubdivisionQuadEdgeMeshFilterTests}")
 
-set(INPUTDATA ${CMAKE_CURRENT_BINARY_DIR}/data)
+set(INPUTDATA ${CMAKE_CURRENT_SOURCE_DIR}/data)
 set(TEMP ${ITK_TEST_OUTPUT_DIR})
 
 itk_add_test(NAME itkModifiedButterflyTriangleCellSubdivisionQuadEdgeMeshFilterTest0
