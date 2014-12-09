@@ -2,7 +2,7 @@ set(DOCUMENTATION "Triangle Mesh Subdivision
 http://www.insight-journal.org/browse/publication/831
 ")
 
-itk_module(itkSubdivisionQuadEdgeMeshFilter
+itk_module(SubdivisionQuadEdgeMeshFilter
   DEPENDS
     ITKQuadEdgeMesh
     ITKQuadEdgeMeshFiltering
