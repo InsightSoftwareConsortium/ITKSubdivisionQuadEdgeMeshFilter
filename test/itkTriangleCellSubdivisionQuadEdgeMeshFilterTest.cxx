@@ -30,9 +30,7 @@
 template< typename TTriangleCellSubdivisionFilter >
 int TriangleCellSubdivisionQuadEdgeMeshFilterTest( int argc, char *argv[] )
 {
-
   typedef TTriangleCellSubdivisionFilter                         TriangleCellSubdivisionFilterType;
-  typedef typename TriangleCellSubdivisionFilterType::Pointer    TriangleCellSubdivisionFilterPointer;
 
   typedef typename TriangleCellSubdivisionFilterType::InputMeshType    InputMeshType;
   typedef typename TriangleCellSubdivisionFilterType::OutputMeshType   OutputMeshType;
@@ -154,13 +152,12 @@ int itkTriangleCellSubdivisionQuadEdgeMeshFilterTest(int argc, char *argv[])
   typedef float MeshPixelType;
   const unsigned int Dimension = 3;
 
-  typedef itk::QuadEdgeMesh< MeshPixelType, Dimension > InputMeshType;
-  typedef itk::QuadEdgeMesh< MeshPixelType, Dimension > OutputMeshType;
+  typedef itk::QuadEdgeMesh< MeshPixelType, Dimension > MeshType;
 
-  typedef itk::ModifiedButterflyTriangleCellSubdivisionQuadEdgeMeshFilter< OutputMeshType, OutputMeshType >   ModifiedButterflySubdivisionFilterType;
-  typedef itk::LinearTriangleCellSubdivisionQuadEdgeMeshFilter< OutputMeshType, OutputMeshType >      LinearSubdivisionFilterType;
-  typedef itk::LoopTriangleCellSubdivisionQuadEdgeMeshFilter< OutputMeshType, OutputMeshType >        LoopSubdivisionFilterType;
-  typedef itk::SquareThreeTriangleCellSubdivisionQuadEdgeMeshFilter< OutputMeshType, OutputMeshType > SquareThreeSubdivisionFilterType;
+  typedef itk::ModifiedButterflyTriangleCellSubdivisionQuadEdgeMeshFilter< MeshType, MeshType > ModifiedButterflySubdivisionFilterType;
+  typedef itk::LinearTriangleCellSubdivisionQuadEdgeMeshFilter< MeshType, MeshType >            LinearSubdivisionFilterType;
+  typedef itk::LoopTriangleCellSubdivisionQuadEdgeMeshFilter< MeshType, MeshType >              LoopSubdivisionFilterType;
+  typedef itk::SquareThreeTriangleCellSubdivisionQuadEdgeMeshFilter< MeshType, MeshType >       SquareThreeSubdivisionFilterType;
 
   if ( argc >= 4 )
     {
