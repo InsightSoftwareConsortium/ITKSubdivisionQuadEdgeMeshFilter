@@ -87,7 +87,7 @@ protected:
   ModifiedButterflyTriangleCellSubdivisionQuadEdgeMeshFilter() {}
   virtual ~ModifiedButterflyTriangleCellSubdivisionQuadEdgeMeshFilter() {}
 
-  virtual void AddNewCellPoints( InputCellType *cell );
+  virtual void AddNewCellPoints( InputCellType *cell ) ITK_OVERRIDE;
 
 private:
   ModifiedButterflyTriangleCellSubdivisionQuadEdgeMeshFilter( const Self & );

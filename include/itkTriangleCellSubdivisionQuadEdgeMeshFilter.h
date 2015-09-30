@@ -97,14 +97,22 @@ protected:
   virtual ~TriangleCellSubdivisionQuadEdgeMeshFilter() {}
 
   virtual void AddNewCellPoints( InputCellType *cell ) = 0;
-  virtual void GenerateOutputPoints( );
-  virtual void GenerateOutputCells( );
+  virtual void GenerateOutputPoints() ITK_OVERRIDE;
+  virtual void GenerateOutputCells() ITK_OVERRIDE;
 
-  void SplitTriangleFromOneEdge( OutputMeshType * output, const OutputPointIdentifier * trianglePointIds, const OutputPointIdentifier * edgePointIds, const unsigned int * splitEdges );
-  void SplitTriangleFromTwoEdges( OutputMeshType * output, const OutputPointIdentifier * trianglePointIds, const OutputPointIdentifier * edgePointIds, const unsigned int * splitEdges );
-  void SplitTriangleFromThreeEdges( OutputMeshType * output, const OutputPointIdentifier * trianglePointIds, const OutputPointIdentifier * edgePointIds );
+  void SplitTriangleFromOneEdge( OutputMeshType * output,
+                                 const OutputPointIdentifier * trianglePointIds,
+                                 const OutputPointIdentifier * edgePointIds,
+                                 const unsigned int * splitEdges );
+  void SplitTriangleFromTwoEdges( OutputMeshType * output,
+                                  const OutputPointIdentifier * trianglePointIds,
+                                  const OutputPointIdentifier * edgePointIds,
+                                  const unsigned int * splitEdges );
+  void SplitTriangleFromThreeEdges( OutputMeshType * output,
+                                    const OutputPointIdentifier * trianglePointIds,
+                                    const OutputPointIdentifier * edgePointIds );
 
-  void PrintSelf(std::ostream & os, Indent indent) const;
+  void PrintSelf(std::ostream & os, Indent indent) const ITK_OVERRIDE;
 
   SubdivisionCellContainer        m_CellsToBeSubdivided;
   bool                            m_Uniform;

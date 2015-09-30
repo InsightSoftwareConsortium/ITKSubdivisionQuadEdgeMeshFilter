@@ -90,8 +90,8 @@ protected:
   SquareThreeTriangleCellSubdivisionQuadEdgeMeshFilter() {}
   virtual ~SquareThreeTriangleCellSubdivisionQuadEdgeMeshFilter() {}
 
-  virtual void AddNewCellPoints( InputCellType *cell );
-  virtual void GenerateOutputCells();
+  virtual void AddNewCellPoints( InputCellType *cell ) ITK_OVERRIDE;
+  virtual void GenerateOutputCells() ITK_OVERRIDE;
 
 private:
   SquareThreeTriangleCellSubdivisionQuadEdgeMeshFilter( const Self & );
