@@ -84,9 +84,9 @@ protected:
   LoopTriangleEdgeCellSubdivisionQuadEdgeMeshFilter() {}
   virtual ~LoopTriangleEdgeCellSubdivisionQuadEdgeMeshFilter() {}
 
-  virtual void AddNewEdgePoints( InputQEType * edge );
+  virtual void AddNewEdgePoints( InputQEType * edge ) ITK_OVERRIDE;
 
-  virtual void CopyInputMeshToOutputMeshPoints();
+  virtual void CopyInputMeshToOutputMeshPoints() ITK_OVERRIDE;
 
   virtual void AverageOriginOfEdge( InputQEType * edge, const InputPointsContainer * points );
 

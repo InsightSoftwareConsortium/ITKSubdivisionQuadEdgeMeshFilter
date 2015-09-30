@@ -75,7 +75,7 @@ public:
 
   /** Run-time type information (and related methods).   */
   itkTypeMacro( ModifiedButterflyTriangleEdgeCellSubdivisionQuadEdgeMeshFilter,
-               TriangleEdgeCellSubdivisionQuadEdgeMeshFilter);
+                TriangleEdgeCellSubdivisionQuadEdgeMeshFilter);
 
   /** New macro for creation of through a Smart Pointer   */
   itkNewMacro(Self);
@@ -84,7 +84,7 @@ protected:
   ModifiedButterflyTriangleEdgeCellSubdivisionQuadEdgeMeshFilter() {}
   virtual ~ModifiedButterflyTriangleEdgeCellSubdivisionQuadEdgeMeshFilter() {}
 
-  virtual void AddNewEdgePoints( InputQEType * edge );
+  virtual void AddNewEdgePoints( InputQEType * edge ) ITK_OVERRIDE;
 
 private:
   ModifiedButterflyTriangleEdgeCellSubdivisionQuadEdgeMeshFilter( const Self & );//purposely not implement

@@ -100,9 +100,9 @@ protected:
 
   /** inheriting class should implement this method, to take care of mesh connectivity (vertex' connection). */
   virtual void GenerateOutputCells( ) = 0;
-  virtual void GenerateData();
+  virtual void GenerateData() ITK_OVERRIDE;
 
-  void PrintSelf( std::ostream & os, Indent indent ) const;
+  void PrintSelf( std::ostream & os, Indent indent ) const ITK_OVERRIDE;
 
   EdgePointIdentifierContainerPointer m_EdgesPointIdentifier;
 
