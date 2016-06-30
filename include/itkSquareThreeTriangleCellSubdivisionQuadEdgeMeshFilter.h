@@ -94,8 +94,7 @@ protected:
   virtual void GenerateOutputCells() ITK_OVERRIDE;
 
 private:
-  SquareThreeTriangleCellSubdivisionQuadEdgeMeshFilter( const Self & );
-  void operator=( const Self & );
+  ITK_DISALLOW_COPY_AND_ASSIGN(SquareThreeTriangleCellSubdivisionQuadEdgeMeshFilter);
 };
 }
 

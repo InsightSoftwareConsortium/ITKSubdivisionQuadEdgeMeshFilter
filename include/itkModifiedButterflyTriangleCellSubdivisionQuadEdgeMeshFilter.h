@@ -90,8 +90,7 @@ protected:
   virtual void AddNewCellPoints( InputCellType *cell ) ITK_OVERRIDE;
 
 private:
-  ModifiedButterflyTriangleCellSubdivisionQuadEdgeMeshFilter( const Self & );
-  void operator=( const Self & );
+  ITK_DISALLOW_COPY_AND_ASSIGN(ModifiedButterflyTriangleCellSubdivisionQuadEdgeMeshFilter);
 };
 }
 #ifndef ITK_MANUAL_INSTANTIATION

@@ -107,8 +107,7 @@ protected:
   EdgePointIdentifierContainerPointer m_EdgesPointIdentifier;
 
 private:
-  SubdivisionQuadEdgeMeshFilter( const Self & ); // purposely not implemented
-  void operator=( const Self & );                // purposely not implemented
+  ITK_DISALLOW_COPY_AND_ASSIGN(SubdivisionQuadEdgeMeshFilter);
 };
 } // end namespace itk
 
