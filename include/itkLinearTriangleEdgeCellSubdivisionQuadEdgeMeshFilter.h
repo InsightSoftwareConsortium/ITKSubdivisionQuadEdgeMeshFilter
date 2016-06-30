@@ -87,8 +87,7 @@ protected:
   virtual void AddNewEdgePoints( InputQEType * edge ) ITK_OVERRIDE;
 
 private:
-  LinearTriangleEdgeCellSubdivisionQuadEdgeMeshFilter( const Self & );//purposely not implement
-  void operator=( const Self & );//purposely not implement
+  ITK_DISALLOW_COPY_AND_ASSIGN(LinearTriangleEdgeCellSubdivisionQuadEdgeMeshFilter);
 };
 }
 
