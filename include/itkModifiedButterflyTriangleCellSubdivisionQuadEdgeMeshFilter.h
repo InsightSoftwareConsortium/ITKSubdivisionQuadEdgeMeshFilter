@@ -85,9 +85,9 @@ public:
 
 protected:
   ModifiedButterflyTriangleCellSubdivisionQuadEdgeMeshFilter() {}
-  ~ModifiedButterflyTriangleCellSubdivisionQuadEdgeMeshFilter() ITK_OVERRIDE {}
+  ~ModifiedButterflyTriangleCellSubdivisionQuadEdgeMeshFilter() override {}
 
-  void AddNewCellPoints( InputCellType *cell ) ITK_OVERRIDE;
+  void AddNewCellPoints( InputCellType *cell ) override;
 
 private:
   ITK_DISALLOW_COPY_AND_ASSIGN(ModifiedButterflyTriangleCellSubdivisionQuadEdgeMeshFilter);
