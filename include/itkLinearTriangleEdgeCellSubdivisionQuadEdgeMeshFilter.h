@@ -82,9 +82,9 @@ public:
 
 protected:
   LinearTriangleEdgeCellSubdivisionQuadEdgeMeshFilter() {}
-  ~LinearTriangleEdgeCellSubdivisionQuadEdgeMeshFilter() ITK_OVERRIDE {}
+  ~LinearTriangleEdgeCellSubdivisionQuadEdgeMeshFilter() override {}
 
-  void AddNewEdgePoints( InputQEType * edge ) ITK_OVERRIDE;
+  void AddNewEdgePoints( InputQEType * edge ) override;
 
 private:
   ITK_DISALLOW_COPY_AND_ASSIGN(LinearTriangleEdgeCellSubdivisionQuadEdgeMeshFilter);
