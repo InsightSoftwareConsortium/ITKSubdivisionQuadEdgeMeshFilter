@@ -93,14 +93,14 @@ public:
 
 protected:
   SubdivisionQuadEdgeMeshFilter();
-  virtual ~SubdivisionQuadEdgeMeshFilter() {}
+  ~SubdivisionQuadEdgeMeshFilter() ITK_OVERRIDE {}
 
   /** inheriting class should implement this method, to take care of mesh geometry (vertex' coordinates). */
   virtual void GenerateOutputPoints( ) = 0;
 
   /** inheriting class should implement this method, to take care of mesh connectivity (vertex' connection). */
   virtual void GenerateOutputCells( ) = 0;
-  virtual void GenerateData() ITK_OVERRIDE;
+  void GenerateData() ITK_OVERRIDE;
 
   void PrintSelf( std::ostream & os, Indent indent ) const ITK_OVERRIDE;
 
