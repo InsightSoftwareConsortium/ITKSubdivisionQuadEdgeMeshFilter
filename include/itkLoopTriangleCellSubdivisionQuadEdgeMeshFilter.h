@@ -107,11 +107,11 @@ public:
   itkNewMacro( Self );
 protected:
   LoopTriangleCellSubdivisionQuadEdgeMeshFilter() {}
-  virtual ~LoopTriangleCellSubdivisionQuadEdgeMeshFilter() {}
+  ~LoopTriangleCellSubdivisionQuadEdgeMeshFilter() ITK_OVERRIDE {}
 
-  virtual void CopyInputMeshToOutputMeshPoints() ITK_OVERRIDE;
+  void CopyInputMeshToOutputMeshPoints() ITK_OVERRIDE;
 
-  virtual void AddNewCellPoints( InputCellType *cell ) ITK_OVERRIDE;
+  void AddNewCellPoints( InputCellType *cell ) ITK_OVERRIDE;
 
   InputPointType SmoothingPoint( const InputPointType & ipt, const InputPointsContainer * points );
 

@@ -88,11 +88,11 @@ public:
 
 protected:
   TriangleEdgeCellSubdivisionQuadEdgeMeshFilter();
-  virtual ~TriangleEdgeCellSubdivisionQuadEdgeMeshFilter() {}
+  ~TriangleEdgeCellSubdivisionQuadEdgeMeshFilter() ITK_OVERRIDE {}
 
-  virtual void AddNewCellPoints( InputCellType * itkNotUsed( cell ) ) ITK_OVERRIDE {}
+  void AddNewCellPoints( InputCellType * itkNotUsed( cell ) ) ITK_OVERRIDE {}
   virtual void AddNewEdgePoints( InputQEType * edge ) = 0;
-  virtual void GenerateOutputPoints() ITK_OVERRIDE;
+  void GenerateOutputPoints() ITK_OVERRIDE;
 
   void PrintSelf( std::ostream & os, Indent indent ) const ITK_OVERRIDE;
 

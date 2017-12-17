@@ -94,11 +94,11 @@ public:
 
 protected:
   TriangleCellSubdivisionQuadEdgeMeshFilter();
-  virtual ~TriangleCellSubdivisionQuadEdgeMeshFilter() {}
+  ~TriangleCellSubdivisionQuadEdgeMeshFilter() ITK_OVERRIDE {}
 
   virtual void AddNewCellPoints( InputCellType *cell ) = 0;
-  virtual void GenerateOutputPoints() ITK_OVERRIDE;
-  virtual void GenerateOutputCells() ITK_OVERRIDE;
+  void GenerateOutputPoints() ITK_OVERRIDE;
+  void GenerateOutputCells() ITK_OVERRIDE;
 
   void SplitTriangleFromOneEdge( OutputMeshType * output,
                                  const OutputPointIdentifier * trianglePointIds,

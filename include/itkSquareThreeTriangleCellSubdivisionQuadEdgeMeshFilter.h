@@ -88,10 +88,10 @@ public:
 
 protected:
   SquareThreeTriangleCellSubdivisionQuadEdgeMeshFilter() {}
-  virtual ~SquareThreeTriangleCellSubdivisionQuadEdgeMeshFilter() {}
+  ~SquareThreeTriangleCellSubdivisionQuadEdgeMeshFilter() ITK_OVERRIDE {}
 
-  virtual void AddNewCellPoints( InputCellType *cell ) ITK_OVERRIDE;
-  virtual void GenerateOutputCells() ITK_OVERRIDE;
+  void AddNewCellPoints( InputCellType *cell ) ITK_OVERRIDE;
+  void GenerateOutputCells() ITK_OVERRIDE;
 
 private:
   ITK_DISALLOW_COPY_AND_ASSIGN(SquareThreeTriangleCellSubdivisionQuadEdgeMeshFilter);

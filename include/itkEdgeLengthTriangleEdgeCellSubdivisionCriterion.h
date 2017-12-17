@@ -63,14 +63,14 @@ public:
   itkTypeMacro( EdgeLengthTriangleEdgeCellSubdivisionCriterion, QuadEdgeMeshSubdivisionCriterion );
   itkNewMacro( Self );
 
-  virtual void Compute( MeshType * mesh, SubdivisionCellContainer & edgeList ) ITK_OVERRIDE;
+  void Compute( MeshType * mesh, SubdivisionCellContainer & edgeList ) ITK_OVERRIDE;
 
   itkGetConstMacro(MaximumLength, CoordRepType);
   itkSetMacro(MaximumLength, CoordRepType);
 
 protected:
   EdgeLengthTriangleEdgeCellSubdivisionCriterion(){ m_MaximumLength = NumericTraits< CoordRepType >::max(); }
-  ~EdgeLengthTriangleEdgeCellSubdivisionCriterion(){}
+  ~EdgeLengthTriangleEdgeCellSubdivisionCriterion() ITK_OVERRIDE{}
 
 private:
   CoordRepType m_MaximumLength;
