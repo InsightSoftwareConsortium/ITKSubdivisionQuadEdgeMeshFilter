@@ -38,7 +38,7 @@ EdgeLengthTriangleEdgeCellSubdivisionCriterion< TMesh >
   typename MeshType::CellsContainer::ConstIterator eter = edges->Begin();
   while( eter != edges->End() )
     {
-    typename MeshType::EdgeCellType * edge = dynamic_cast<typename MeshType::EdgeCellType *>( eter.Value() );
+    auto * edge = dynamic_cast<typename MeshType::EdgeCellType *>( eter.Value() );
     if( edge )
       {
       if( mesh->ComputeEdgeLength( edge->GetQEGeom() ) > m_MaximumLength )
