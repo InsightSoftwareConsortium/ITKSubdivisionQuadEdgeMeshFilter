@@ -122,7 +122,7 @@ int itkCriterionTriangleEdgeCellSubdivisionQuadEdgeMeshFilterTest( int argc, cha
     }
 
   using MeshPixelType = float;
-  const unsigned int Dimension = 3;
+  constexpr unsigned int Dimension = 3;
 
   using InputMeshType = itk::QuadEdgeMesh< MeshPixelType, Dimension >;
   using OutputMeshType = itk::QuadEdgeMesh< MeshPixelType, Dimension >;
