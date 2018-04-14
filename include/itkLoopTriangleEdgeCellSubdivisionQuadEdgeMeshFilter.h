@@ -34,6 +34,8 @@ class LoopTriangleEdgeCellSubdivisionQuadEdgeMeshFilter:
   public TriangleEdgeCellSubdivisionQuadEdgeMeshFilter< TInputMesh, TOutputMesh >
 {
 public:
+  ITK_DISALLOW_COPY_AND_ASSIGN(LoopTriangleEdgeCellSubdivisionQuadEdgeMeshFilter);
+
   using Self = LoopTriangleEdgeCellSubdivisionQuadEdgeMeshFilter;
   using Superclass = TriangleEdgeCellSubdivisionQuadEdgeMeshFilter< TInputMesh, TOutputMesh >;
   using Pointer = SmartPointer< Self >;
@@ -89,9 +91,6 @@ protected:
   void CopyInputMeshToOutputMeshPoints() override;
 
   virtual void AverageOriginOfEdge( InputQEType * edge, const InputPointsContainer * points );
-
-private:
-  ITK_DISALLOW_COPY_AND_ASSIGN(LoopTriangleEdgeCellSubdivisionQuadEdgeMeshFilter);
 };
 }
 
