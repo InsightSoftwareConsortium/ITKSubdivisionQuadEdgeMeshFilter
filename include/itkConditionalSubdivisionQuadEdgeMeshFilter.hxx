@@ -23,48 +23,46 @@
 
 namespace itk
 {
-template< typename TInputMesh, typename TSubdivisionFilter >
-ConditionalSubdivisionQuadEdgeMeshFilter< TInputMesh, TSubdivisionFilter >
-::ConditionalSubdivisionQuadEdgeMeshFilter()
+template <typename TInputMesh, typename TSubdivisionFilter>
+ConditionalSubdivisionQuadEdgeMeshFilter<TInputMesh, TSubdivisionFilter>::ConditionalSubdivisionQuadEdgeMeshFilter()
 {
   this->m_SubdivisionFilter = SubdivisionFilterType::New();
 }
 
-template< typename TInputMesh, typename TSubdivisionFilter >
+template <typename TInputMesh, typename TSubdivisionFilter>
 void
-ConditionalSubdivisionQuadEdgeMeshFilter< TInputMesh, TSubdivisionFilter >
-::SetSubdivisionCriterion( CriterionType * criterion )
+ConditionalSubdivisionQuadEdgeMeshFilter<TInputMesh, TSubdivisionFilter>::SetSubdivisionCriterion(
+  CriterionType * criterion)
 {
   this->m_SubdivisionCriterion = criterion;
   this->Modified();
 }
 
-template< typename TInputMesh, typename TSubdivisionFilter >
+template <typename TInputMesh, typename TSubdivisionFilter>
 void
-ConditionalSubdivisionQuadEdgeMeshFilter< TInputMesh, TSubdivisionFilter >
-::GenerateData()
+ConditionalSubdivisionQuadEdgeMeshFilter<TInputMesh, TSubdivisionFilter>::GenerateData()
 {
   this->CopyInputMeshToOutputMeshGeometry();
-  this->m_SubdivisionCriterion->Compute( this->GetOutput(), this->m_CellsToBeSubdivided );
+  this->m_SubdivisionCriterion->Compute(this->GetOutput(), this->m_CellsToBeSubdivided);
 
-  while( !this->m_CellsToBeSubdivided.empty() )
-    {
-    this->m_SubdivisionFilter->SetInput( this->GetOutput() );
-    this->m_SubdivisionFilter->SetCellsToBeSubdivided( this->m_CellsToBeSubdivided );
+  while (!this->m_CellsToBeSubdivided.empty())
+  {
+    this->m_SubdivisionFilter->SetInput(this->GetOutput());
+    this->m_SubdivisionFilter->SetCellsToBeSubdivided(this->m_CellsToBeSubdivided);
     this->m_SubdivisionFilter->Update();
     OutputMeshPointer mesh = this->m_SubdivisionFilter->GetOutput();
     mesh->DisconnectPipeline();
-    this->GraftOutput( mesh );
-    this->m_SubdivisionCriterion->Compute( this->GetOutput(), this->m_CellsToBeSubdivided );
-    }
+    this->GraftOutput(mesh);
+    this->m_SubdivisionCriterion->Compute(this->GetOutput(), this->m_CellsToBeSubdivided);
+  }
 }
 
-template< typename TInputMesh, typename TSubdivisionFilter >
+template <typename TInputMesh, typename TSubdivisionFilter>
 void
-ConditionalSubdivisionQuadEdgeMeshFilter< TInputMesh, TSubdivisionFilter >
-::PrintSelf( std::ostream & os, Indent indent ) const
+ConditionalSubdivisionQuadEdgeMeshFilter<TInputMesh, TSubdivisionFilter>::PrintSelf(std::ostream & os,
+                                                                                    Indent         indent) const
 {
-  Superclass::PrintSelf( os, indent );
+  Superclass::PrintSelf(os, indent);
 }
-}
+} // namespace itk
 #endif

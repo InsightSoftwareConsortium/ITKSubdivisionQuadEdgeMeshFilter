@@ -23,32 +23,31 @@
 
 namespace itk
 {
-template< typename TMesh >
+template <typename TMesh>
 void
-EdgeLengthTriangleEdgeCellSubdivisionCriterion< TMesh >
-::Compute(MeshType * mesh, SubdivisionCellContainer & edgeList)
+EdgeLengthTriangleEdgeCellSubdivisionCriterion<TMesh>::Compute(MeshType * mesh, SubdivisionCellContainer & edgeList)
 {
   edgeList.clear();
   typename MeshType::CellsContainer::ConstPointer edges = mesh->GetEdgeCells();
-  if( !edges )
-    {
-    itkExceptionMacro( "<<Input mesh has no edges" );
-    }
+  if (!edges)
+  {
+    itkExceptionMacro("<<Input mesh has no edges");
+  }
 
   typename MeshType::CellsContainer::ConstIterator eter = edges->Begin();
-  while( eter != edges->End() )
+  while (eter != edges->End())
+  {
+    auto * edge = dynamic_cast<typename MeshType::EdgeCellType *>(eter.Value());
+    if (edge)
     {
-    auto * edge = dynamic_cast<typename MeshType::EdgeCellType *>( eter.Value() );
-    if( edge )
+      if (mesh->ComputeEdgeLength(edge->GetQEGeom()) > m_MaximumLength)
       {
-      if( mesh->ComputeEdgeLength( edge->GetQEGeom() ) > m_MaximumLength )
-        {
-        edgeList.push_back( edge->GetQEGeom() );
-        }
+        edgeList.push_back(edge->GetQEGeom());
       }
-    ++eter;
     }
+    ++eter;
+  }
 }
 
-}
+} // namespace itk
 #endif

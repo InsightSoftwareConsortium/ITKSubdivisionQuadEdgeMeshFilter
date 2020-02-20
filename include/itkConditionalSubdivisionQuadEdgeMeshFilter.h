@@ -31,17 +31,17 @@ namespace itk
  * \brief FIXME
  * \ingroup SubdivisionQuadEdgeMeshFilter
  */
-template< typename TInputMesh, typename TSubdivisionFilter >
-class ConditionalSubdivisionQuadEdgeMeshFilter:
-  public QuadEdgeMeshToQuadEdgeMeshFilter< TInputMesh, typename TSubdivisionFilter::OutputMeshType >
+template <typename TInputMesh, typename TSubdivisionFilter>
+class ConditionalSubdivisionQuadEdgeMeshFilter
+  : public QuadEdgeMeshToQuadEdgeMeshFilter<TInputMesh, typename TSubdivisionFilter::OutputMeshType>
 {
 public:
   ITK_DISALLOW_COPY_AND_ASSIGN(ConditionalSubdivisionQuadEdgeMeshFilter);
 
   using Self = ConditionalSubdivisionQuadEdgeMeshFilter;
-  using Superclass = QuadEdgeMeshToQuadEdgeMeshFilter< TInputMesh, typename TSubdivisionFilter::OutputMeshType>;
-  using Pointer = SmartPointer< Self >;
-  using ConstPointer = SmartPointer< const Self >;
+  using Superclass = QuadEdgeMeshToQuadEdgeMeshFilter<TInputMesh, typename TSubdivisionFilter::OutputMeshType>;
+  using Pointer = SmartPointer<Self>;
+  using ConstPointer = SmartPointer<const Self>;
 
   using SubdivisionFilterType = TSubdivisionFilter;
   using SubdivisionFilterPointer = typename SubdivisionFilterType::Pointer;
@@ -58,37 +58,43 @@ public:
   using CriterionPointer = typename CriterionType::Pointer;
 
   /** Run-time type information (and related methods).   */
-  itkTypeMacro( ConditionalSubdivisionQuadEdgeMeshFilter, QuadEdgeMeshToQuadEdgeMeshFilter );
-  itkNewMacro( Self );
+  itkTypeMacro(ConditionalSubdivisionQuadEdgeMeshFilter, QuadEdgeMeshToQuadEdgeMeshFilter);
+  itkNewMacro(Self);
 
 #ifdef ITK_USE_CONCEPT_CHECKING
-  itkConceptMacro( SameTypeCheck,
-    ( Concept::SameType< typename SubdivisionFilterType::InputMeshType, typename SubdivisionFilterType::OutputMeshType > ) );
-  itkConceptMacro( SameTypeCheckMesh,
-    ( Concept::SameType< typename SubdivisionFilterType::OutputMeshType, typename CriterionType::MeshType > ) );
-  itkConceptMacro( SameTypeCheckContainer,
-    ( Concept::SameType< typename SubdivisionFilterType::SubdivisionCellContainer, typename CriterionType::SubdivisionCellContainer > ) );
+  itkConceptMacro(
+    SameTypeCheck,
+    (Concept::SameType<typename SubdivisionFilterType::InputMeshType, typename SubdivisionFilterType::OutputMeshType>));
+  itkConceptMacro(
+    SameTypeCheckMesh,
+    (Concept::SameType<typename SubdivisionFilterType::OutputMeshType, typename CriterionType::MeshType>));
+  itkConceptMacro(SameTypeCheckContainer,
+                  (Concept::SameType<typename SubdivisionFilterType::SubdivisionCellContainer,
+                                     typename CriterionType::SubdivisionCellContainer>));
 #endif
 
-  void SetSubdivisionCriterion( CriterionType * criterion );
+  void
+  SetSubdivisionCriterion(CriterionType * criterion);
 
 protected:
   ConditionalSubdivisionQuadEdgeMeshFilter();
 
   ~ConditionalSubdivisionQuadEdgeMeshFilter() override {}
 
-  void GenerateData() override;
+  void
+  GenerateData() override;
 
-  void PrintSelf( std::ostream & os, Indent indent ) const override;
+  void
+  PrintSelf(std::ostream & os, Indent indent) const override;
 
-  SubdivisionFilterPointer  m_SubdivisionFilter;
-  SubdivisionCellContainer  m_CellsToBeSubdivided;
-  CriterionPointer          m_SubdivisionCriterion;
+  SubdivisionFilterPointer m_SubdivisionFilter;
+  SubdivisionCellContainer m_CellsToBeSubdivided;
+  CriterionPointer         m_SubdivisionCriterion;
 };
 } // end namespace itk
 
 #ifndef ITK_MANUAL_INSTANTIATION
-#include "itkConditionalSubdivisionQuadEdgeMeshFilter.hxx"
+#  include "itkConditionalSubdivisionQuadEdgeMeshFilter.hxx"
 #endif
 
 #endif

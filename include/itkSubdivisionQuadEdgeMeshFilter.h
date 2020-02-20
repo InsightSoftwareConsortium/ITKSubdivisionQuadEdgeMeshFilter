@@ -36,17 +36,16 @@ namespace itk
  *
  * \ingroup SubdivisionQuadEdgeMeshFilter
  */
-template< typename TInputMesh, typename TOutputMesh >
-class SubdivisionQuadEdgeMeshFilter:
-  public QuadEdgeMeshToQuadEdgeMeshFilter< TInputMesh, TOutputMesh >
+template <typename TInputMesh, typename TOutputMesh>
+class SubdivisionQuadEdgeMeshFilter : public QuadEdgeMeshToQuadEdgeMeshFilter<TInputMesh, TOutputMesh>
 {
 public:
   ITK_DISALLOW_COPY_AND_ASSIGN(SubdivisionQuadEdgeMeshFilter);
 
   using Self = SubdivisionQuadEdgeMeshFilter;
-  using Superclass = QuadEdgeMeshToQuadEdgeMeshFilter< TInputMesh, TOutputMesh >;
-  using Pointer = SmartPointer< Self >;
-  using ConstPointer = SmartPointer< const Self >;
+  using Superclass = QuadEdgeMeshToQuadEdgeMeshFilter<TInputMesh, TOutputMesh>;
+  using Pointer = SmartPointer<Self>;
+  using ConstPointer = SmartPointer<const Self>;
 
   using InputMeshType = TInputMesh;
   using InputMeshPointer = typename InputMeshType::Pointer;
@@ -85,33 +84,37 @@ public:
   using OutputMeshTraits = typename OutputMeshType::MeshTraits;
   using OutputPointIdIterator = typename OutputMeshType::PointIdIterator;
 
-  using EdgePointIdentifierContainer = MapContainer< InputQEType *, OutputPointIdentifier >;
+  using EdgePointIdentifierContainer = MapContainer<InputQEType *, OutputPointIdentifier>;
   using EdgePointIdentifierContainerPointer = typename EdgePointIdentifierContainer::Pointer;
   using EdgePointIdentifierContainerIterator = typename EdgePointIdentifierContainer::Iterator;
   using EdgePointIdentifierContainerConstIterator = typename EdgePointIdentifierContainer::ConstIterator;
 
   /** Run-time type information (and related methods).   */
-  itkTypeMacro( SubdivisionQuadEdgeMeshFilter, QuadEdgeMeshToQuadEdgeMeshFilter );
+  itkTypeMacro(SubdivisionQuadEdgeMeshFilter, QuadEdgeMeshToQuadEdgeMeshFilter);
 
 protected:
   SubdivisionQuadEdgeMeshFilter();
   ~SubdivisionQuadEdgeMeshFilter() override {}
 
   /** inheriting class should implement this method, to take care of mesh geometry (vertex' coordinates). */
-  virtual void GenerateOutputPoints( ) = 0;
+  virtual void
+  GenerateOutputPoints() = 0;
 
   /** inheriting class should implement this method, to take care of mesh connectivity (vertex' connection). */
-  virtual void GenerateOutputCells( ) = 0;
-  void GenerateData() override;
+  virtual void
+  GenerateOutputCells() = 0;
+  void
+  GenerateData() override;
 
-  void PrintSelf( std::ostream & os, Indent indent ) const override;
+  void
+  PrintSelf(std::ostream & os, Indent indent) const override;
 
   EdgePointIdentifierContainerPointer m_EdgesPointIdentifier;
 };
 } // end namespace itk
 
 #ifndef ITK_MANUAL_INSTANTIATION
-#include "itkSubdivisionQuadEdgeMeshFilter.hxx"
+#  include "itkSubdivisionQuadEdgeMeshFilter.hxx"
 #endif
 
 #endif

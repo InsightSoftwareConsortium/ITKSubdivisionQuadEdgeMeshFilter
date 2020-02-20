@@ -45,22 +45,22 @@ namespace itk
  * neighborhood points. The weighting \f$\beta\f$  defined as
  *
  * \f[
- * \beta = \frac{1}{N} \left( \frac{5}{8} - \left( \frac{3}{8} + \frac{1}{4} \cdot \cos^2\left(\frac{2\pi}{N} \right)\right) \right)
- * \f]
+ * \beta = \frac{1}{N} \left( \frac{5}{8} - \left( \frac{3}{8} + \frac{1}{4} \cdot \cos^2\left(\frac{2\pi}{N}
+ * \right)\right) \right) \f]
  *
  * \ingroup SubdivisionQuadEdgeMeshFilter
  */
-template< typename TInputMesh, typename TOutputMesh >
-class LoopTriangleCellSubdivisionQuadEdgeMeshFilter:
-  public TriangleCellSubdivisionQuadEdgeMeshFilter< TInputMesh, TOutputMesh >
+template <typename TInputMesh, typename TOutputMesh>
+class LoopTriangleCellSubdivisionQuadEdgeMeshFilter
+  : public TriangleCellSubdivisionQuadEdgeMeshFilter<TInputMesh, TOutputMesh>
 {
 public:
   ITK_DISALLOW_COPY_AND_ASSIGN(LoopTriangleCellSubdivisionQuadEdgeMeshFilter);
 
   using Self = LoopTriangleCellSubdivisionQuadEdgeMeshFilter;
-  using Superclass = TriangleCellSubdivisionQuadEdgeMeshFilter< TInputMesh, TOutputMesh >;
-  using Pointer = SmartPointer< Self >;
-  using ConstPointer = SmartPointer< const Self >;
+  using Superclass = TriangleCellSubdivisionQuadEdgeMeshFilter<TInputMesh, TOutputMesh>;
+  using Pointer = SmartPointer<Self>;
+  using ConstPointer = SmartPointer<const Self>;
 
   using InputMeshType = typename Superclass::InputMeshType;
   using InputMeshPointer = typename Superclass::InputMeshPointer;
@@ -103,22 +103,26 @@ public:
   using EdgePointIdentifierContainerConstIterator = typename Superclass::EdgePointIdentifierContainerConstIterator;
 
   /** Run-time type information (and related methods).   */
-  itkTypeMacro( LoopTriangleCellSubdivisionQuadEdgeMeshFilter, TriangleCellSubdivisionQuadEdgeMeshFilter );
+  itkTypeMacro(LoopTriangleCellSubdivisionQuadEdgeMeshFilter, TriangleCellSubdivisionQuadEdgeMeshFilter);
 
   /** New macro for creation of through a Smart Pointer   */
-  itkNewMacro( Self );
+  itkNewMacro(Self);
+
 protected:
   LoopTriangleCellSubdivisionQuadEdgeMeshFilter() {}
   ~LoopTriangleCellSubdivisionQuadEdgeMeshFilter() override {}
 
-  void CopyInputMeshToOutputMeshPoints() override;
+  void
+  CopyInputMeshToOutputMeshPoints() override;
 
-  void AddNewCellPoints( InputCellType *cell ) override;
+  void
+  AddNewCellPoints(InputCellType * cell) override;
 
-  InputPointType SmoothingPoint( const InputPointType & ipt, const InputPointsContainer * points );
+  InputPointType
+  SmoothingPoint(const InputPointType & ipt, const InputPointsContainer * points);
 };
-}
+} // namespace itk
 #ifndef ITK_MANUAL_INSTANTIATION
-#include "itkLoopTriangleCellSubdivisionQuadEdgeMeshFilter.hxx"
+#  include "itkLoopTriangleCellSubdivisionQuadEdgeMeshFilter.hxx"
 #endif
 #endif

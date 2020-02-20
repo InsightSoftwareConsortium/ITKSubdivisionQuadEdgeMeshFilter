@@ -28,14 +28,14 @@ namespace itk
  *\brief
  *\ingroup SubdivisionQuadEdgeMeshFilter
  */
-template< typename TCellSubdivisionFilter >
+template <typename TCellSubdivisionFilter>
 class ITK_EXPORT QuadEdgeMeshSubdivisionCriterion : public Object
 {
 public:
   using Self = QuadEdgeMeshSubdivisionCriterion;
   using Superclass = Object;
-  using Pointer = SmartPointer< Self >;
-  using ConstPointer = SmartPointer< const Self >;
+  using Pointer = SmartPointer<Self>;
+  using ConstPointer = SmartPointer<const Self>;
 
   using MeshType = typename TCellSubdivisionFilter::InputMeshType;
   using MeshPointer = typename MeshType::Pointer;
@@ -57,14 +57,15 @@ public:
   using SubdivisionCellContainer = typename TCellSubdivisionFilter::SubdivisionCellContainer;
 
   /** Run-time type information (and related methods).   */
-  itkTypeMacro( QuadEdgeMeshSubdivisionCriterion, Object );
+  itkTypeMacro(QuadEdgeMeshSubdivisionCriterion, Object);
 
-  virtual void Compute( MeshType * mesh, SubdivisionCellContainer & edgeList ) = 0;
+  virtual void
+  Compute(MeshType * mesh, SubdivisionCellContainer & edgeList) = 0;
 
 protected:
-  QuadEdgeMeshSubdivisionCriterion(){}
-  ~QuadEdgeMeshSubdivisionCriterion() override{}
+  QuadEdgeMeshSubdivisionCriterion() {}
+  ~QuadEdgeMeshSubdivisionCriterion() override {}
 };
 
-}
+} // namespace itk
 #endif

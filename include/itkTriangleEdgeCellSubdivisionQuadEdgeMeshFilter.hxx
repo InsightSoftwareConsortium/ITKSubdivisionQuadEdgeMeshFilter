@@ -23,84 +23,80 @@
 
 namespace itk
 {
-template< typename TInputMesh, typename TOutputMesh >
-TriangleEdgeCellSubdivisionQuadEdgeMeshFilter< TInputMesh, TOutputMesh >
-::TriangleEdgeCellSubdivisionQuadEdgeMeshFilter()
-{
-}
+template <typename TInputMesh, typename TOutputMesh>
+TriangleEdgeCellSubdivisionQuadEdgeMeshFilter<TInputMesh, TOutputMesh>::TriangleEdgeCellSubdivisionQuadEdgeMeshFilter()
+{}
 
-template< typename TInputMesh, typename TOutputMesh >
+template <typename TInputMesh, typename TOutputMesh>
 void
-TriangleEdgeCellSubdivisionQuadEdgeMeshFilter< TInputMesh, TOutputMesh >
-::SetCellsToBeSubdivided( const SubdivisionCellContainer & EdgesList )
+TriangleEdgeCellSubdivisionQuadEdgeMeshFilter<TInputMesh, TOutputMesh>::SetCellsToBeSubdivided(
+  const SubdivisionCellContainer & EdgesList)
 {
   this->m_EdgesToBeSubdivided = EdgesList;
   this->Modified();
 }
 
-template< typename TInputMesh, typename TOutputMesh >
+template <typename TInputMesh, typename TOutputMesh>
 void
-TriangleEdgeCellSubdivisionQuadEdgeMeshFilter< TInputMesh, TOutputMesh >
-::AddSubdividedEdge( InputQEType * edge )
+TriangleEdgeCellSubdivisionQuadEdgeMeshFilter<TInputMesh, TOutputMesh>::AddSubdividedEdge(InputQEType * edge)
 {
-  this->m_EdgesToBeSubdivided.push_back( edge );
+  this->m_EdgesToBeSubdivided.push_back(edge);
   this->Modified();
 }
 
-template< typename TInputMesh, typename TOutputMesh >
+template <typename TInputMesh, typename TOutputMesh>
 void
-TriangleEdgeCellSubdivisionQuadEdgeMeshFilter< TInputMesh, TOutputMesh >
-::GenerateOutputPoints()
+TriangleEdgeCellSubdivisionQuadEdgeMeshFilter<TInputMesh, TOutputMesh>::GenerateOutputPoints()
 {
-  //1. Copy points from input to output
+  // 1. Copy points from input to output
   this->CopyInputMeshToOutputMeshPoints();
 
-  //2. Initialize edgePoints container
+  // 2. Initialize edgePoints container
   this->m_EdgesPointIdentifier->Initialize();
 
   this->m_Uniform = this->m_EdgesToBeSubdivided.empty();
 
-  if( this->m_Uniform )
-    {
+  if (this->m_Uniform)
+  {
     typename InputCellsContainer::ConstPointer edges = this->GetInput()->GetEdgeCells();
-    if( !edges )
-      {
-      itkExceptionMacro( "<<Input mesh has no edges" );
-      }
+    if (!edges)
+    {
+      itkExceptionMacro("<<Input mesh has no edges");
+    }
 
     typename InputCellsContainer::ConstIterator eter = edges->Begin();
-    while( eter != edges->End() )
-      {
-      auto * edge = dynamic_cast< typename InputMeshType::EdgeCellType * >( eter.Value() );
-      if( edge )
-        {
-        this->AddNewEdgePoints( edge->GetQEGeom() );
-        }
-      ++eter;
-      }
-    }
-  else
+    while (eter != edges->End())
     {
-    SubdivisionCellContainerConstIterator it  = this->m_EdgesToBeSubdivided.begin();
+      auto * edge = dynamic_cast<typename InputMeshType::EdgeCellType *>(eter.Value());
+      if (edge)
+      {
+        this->AddNewEdgePoints(edge->GetQEGeom());
+      }
+      ++eter;
+    }
+  }
+  else
+  {
+    SubdivisionCellContainerConstIterator it = this->m_EdgesToBeSubdivided.begin();
     SubdivisionCellContainerConstIterator end = this->m_EdgesToBeSubdivided.end();
 
-    while( it != end )
+    while (it != end)
+    {
+      if (*it)
       {
-      if( *it )
-        {
-        this->AddNewEdgePoints( *it );
-        }
-      ++it;
+        this->AddNewEdgePoints(*it);
       }
+      ++it;
     }
+  }
 }
 
-template< typename TInputMesh, typename TOutputMesh >
+template <typename TInputMesh, typename TOutputMesh>
 void
-TriangleEdgeCellSubdivisionQuadEdgeMeshFilter< TInputMesh, TOutputMesh >
-::PrintSelf( std::ostream & os, Indent indent ) const
+TriangleEdgeCellSubdivisionQuadEdgeMeshFilter<TInputMesh, TOutputMesh>::PrintSelf(std::ostream & os,
+                                                                                  Indent         indent) const
 {
-  Superclass::PrintSelf( os, indent );
+  Superclass::PrintSelf(os, indent);
 }
-}
+} // namespace itk
 #endif

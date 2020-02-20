@@ -29,17 +29,17 @@ namespace itk
  * \brief FIXME     Add documentation here
  * \ingroup SubdivisionQuadEdgeMeshFilter
  */
-template< typename TInputMesh, typename TOutputMesh >
-class LoopTriangleEdgeCellSubdivisionQuadEdgeMeshFilter:
-  public TriangleEdgeCellSubdivisionQuadEdgeMeshFilter< TInputMesh, TOutputMesh >
+template <typename TInputMesh, typename TOutputMesh>
+class LoopTriangleEdgeCellSubdivisionQuadEdgeMeshFilter
+  : public TriangleEdgeCellSubdivisionQuadEdgeMeshFilter<TInputMesh, TOutputMesh>
 {
 public:
   ITK_DISALLOW_COPY_AND_ASSIGN(LoopTriangleEdgeCellSubdivisionQuadEdgeMeshFilter);
 
   using Self = LoopTriangleEdgeCellSubdivisionQuadEdgeMeshFilter;
-  using Superclass = TriangleEdgeCellSubdivisionQuadEdgeMeshFilter< TInputMesh, TOutputMesh >;
-  using Pointer = SmartPointer< Self >;
-  using ConstPointer = SmartPointer< const Self >;
+  using Superclass = TriangleEdgeCellSubdivisionQuadEdgeMeshFilter<TInputMesh, TOutputMesh>;
+  using Pointer = SmartPointer<Self>;
+  using ConstPointer = SmartPointer<const Self>;
 
   using InputMeshType = typename Superclass::InputMeshType;
   using InputMeshPointer = typename Superclass::InputMeshPointer;
@@ -76,8 +76,7 @@ public:
   using OutputPointIdIterator = typename Superclass::OutputPointIdIterator;
 
   /** Run-time type information (and related methods).   */
-  itkTypeMacro( LoopTriangleEdgeCellSubdivisionQuadEdgeMeshFilter,
-    TriangleEdgeCellSubdivisionQuadEdgeMeshFilter );
+  itkTypeMacro(LoopTriangleEdgeCellSubdivisionQuadEdgeMeshFilter, TriangleEdgeCellSubdivisionQuadEdgeMeshFilter);
 
   /** New macro for creation of through a Smart Pointer   */
   itkNewMacro(Self);
@@ -86,16 +85,19 @@ protected:
   LoopTriangleEdgeCellSubdivisionQuadEdgeMeshFilter() {}
   ~LoopTriangleEdgeCellSubdivisionQuadEdgeMeshFilter() override {}
 
-  void AddNewEdgePoints( InputQEType * edge ) override;
+  void
+  AddNewEdgePoints(InputQEType * edge) override;
 
-  void CopyInputMeshToOutputMeshPoints() override;
+  void
+  CopyInputMeshToOutputMeshPoints() override;
 
-  virtual void AverageOriginOfEdge( InputQEType * edge, const InputPointsContainer * points );
+  virtual void
+  AverageOriginOfEdge(InputQEType * edge, const InputPointsContainer * points);
 };
-}
+} // namespace itk
 
 #ifndef ITK_MANUAL_INSTANTIATION
-#include "itkLoopTriangleEdgeCellSubdivisionQuadEdgeMeshFilter.hxx"
+#  include "itkLoopTriangleEdgeCellSubdivisionQuadEdgeMeshFilter.hxx"
 #endif
 
 #endif

@@ -29,17 +29,17 @@ namespace itk
  * \brief FIXME     Add documentation here
  * \ingroup SubdivisionQuadEdgeMeshFilter
  */
-template< typename TInputMesh, typename TOutputMesh >
-class ModifiedButterflyTriangleEdgeCellSubdivisionQuadEdgeMeshFilter:
-  public TriangleEdgeCellSubdivisionQuadEdgeMeshFilter< TInputMesh, TOutputMesh >
+template <typename TInputMesh, typename TOutputMesh>
+class ModifiedButterflyTriangleEdgeCellSubdivisionQuadEdgeMeshFilter
+  : public TriangleEdgeCellSubdivisionQuadEdgeMeshFilter<TInputMesh, TOutputMesh>
 {
 public:
   ITK_DISALLOW_COPY_AND_ASSIGN(ModifiedButterflyTriangleEdgeCellSubdivisionQuadEdgeMeshFilter);
 
   using Self = ModifiedButterflyTriangleEdgeCellSubdivisionQuadEdgeMeshFilter;
-  using Superclass = TriangleEdgeCellSubdivisionQuadEdgeMeshFilter< TInputMesh, TOutputMesh >;
-  using Pointer = SmartPointer< Self >;
-  using ConstPointer = SmartPointer< const Self >;
+  using Superclass = TriangleEdgeCellSubdivisionQuadEdgeMeshFilter<TInputMesh, TOutputMesh>;
+  using Pointer = SmartPointer<Self>;
+  using ConstPointer = SmartPointer<const Self>;
 
   using InputMeshType = typename Superclass::InputMeshType;
   using InputMeshPointer = typename Superclass::InputMeshPointer;
@@ -76,8 +76,8 @@ public:
   using OutputPointIdIterator = typename Superclass::OutputPointIdIterator;
 
   /** Run-time type information (and related methods).   */
-  itkTypeMacro( ModifiedButterflyTriangleEdgeCellSubdivisionQuadEdgeMeshFilter,
-                TriangleEdgeCellSubdivisionQuadEdgeMeshFilter);
+  itkTypeMacro(ModifiedButterflyTriangleEdgeCellSubdivisionQuadEdgeMeshFilter,
+               TriangleEdgeCellSubdivisionQuadEdgeMeshFilter);
 
   /** New macro for creation of through a Smart Pointer   */
   itkNewMacro(Self);
@@ -86,12 +86,13 @@ protected:
   ModifiedButterflyTriangleEdgeCellSubdivisionQuadEdgeMeshFilter() {}
   ~ModifiedButterflyTriangleEdgeCellSubdivisionQuadEdgeMeshFilter() override {}
 
-  void AddNewEdgePoints( InputQEType * edge ) override;
+  void
+  AddNewEdgePoints(InputQEType * edge) override;
 };
-}
+} // namespace itk
 
 #ifndef ITK_MANUAL_INSTANTIATION
-#include "itkModifiedButterflyTriangleEdgeCellSubdivisionQuadEdgeMeshFilter.hxx"
+#  include "itkModifiedButterflyTriangleEdgeCellSubdivisionQuadEdgeMeshFilter.hxx"
 #endif
 
 #endif

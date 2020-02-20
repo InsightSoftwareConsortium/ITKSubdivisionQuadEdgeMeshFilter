@@ -29,17 +29,17 @@ namespace itk
  * \brief FIXME     Add documentation here
  * \ingroup SubdivisionQuadEdgeMeshFilter
  */
-template< class TInputMesh, class TOutputMesh >
-class SquareThreeTriangleCellSubdivisionQuadEdgeMeshFilter:
-  public TriangleCellSubdivisionQuadEdgeMeshFilter< TInputMesh, TOutputMesh >
+template <class TInputMesh, class TOutputMesh>
+class SquareThreeTriangleCellSubdivisionQuadEdgeMeshFilter
+  : public TriangleCellSubdivisionQuadEdgeMeshFilter<TInputMesh, TOutputMesh>
 {
 public:
   ITK_DISALLOW_COPY_AND_ASSIGN(SquareThreeTriangleCellSubdivisionQuadEdgeMeshFilter);
 
   using Self = SquareThreeTriangleCellSubdivisionQuadEdgeMeshFilter;
-  using Superclass = TriangleCellSubdivisionQuadEdgeMeshFilter< TInputMesh, TOutputMesh >;
-  using Pointer = SmartPointer< Self >;
-  using ConstPointer = SmartPointer< const Self >;
+  using Superclass = TriangleCellSubdivisionQuadEdgeMeshFilter<TInputMesh, TOutputMesh>;
+  using Pointer = SmartPointer<Self>;
+  using ConstPointer = SmartPointer<const Self>;
 
   using InputMeshType = typename Superclass::InputMeshType;
   using InputMeshPointer = typename Superclass::InputMeshPointer;
@@ -82,23 +82,24 @@ public:
   using EdgePointIdentifierContainerConstIterator = typename Superclass::EdgePointIdentifierContainerConstIterator;
 
   /** Run-time type information (and related methods).   */
-  itkTypeMacro( SquareThreeTriangleCellSubdivisionQuadEdgeMeshFilter,
-               TriangleCellSubdivisionQuadEdgeMeshFilter );
+  itkTypeMacro(SquareThreeTriangleCellSubdivisionQuadEdgeMeshFilter, TriangleCellSubdivisionQuadEdgeMeshFilter);
 
   /** New macro for creation of through a Smart Pointer   */
-  itkNewMacro( Self );
+  itkNewMacro(Self);
 
 protected:
   SquareThreeTriangleCellSubdivisionQuadEdgeMeshFilter() {}
   ~SquareThreeTriangleCellSubdivisionQuadEdgeMeshFilter() override {}
 
-  void AddNewCellPoints( InputCellType *cell ) override;
-  void GenerateOutputCells() override;
+  void
+  AddNewCellPoints(InputCellType * cell) override;
+  void
+  GenerateOutputCells() override;
 };
-}
+} // namespace itk
 
 #ifndef ITK_MANUAL_INSTANTIATION
-#include "itkSquareThreeTriangleCellSubdivisionQuadEdgeMeshFilter.hxx"
+#  include "itkSquareThreeTriangleCellSubdivisionQuadEdgeMeshFilter.hxx"
 #endif
 
 #endif

@@ -27,24 +27,23 @@ namespace itk
  * \class ModifiedButterflyTriangleCellSubdivisionQuadEdgeMeshFilter
  * \brief Interpolating subdivision scheme.
  *
- * Similar to LinearTriangleCellSubdivisionQuadEdgeMeshFilter, except that new vertices created using butterfly neighborhood:
- * \f[
- * NV_k = \frac{1}{2} \sum_{i=1}{2} U_k^i + \frac{1}{8} \sum_{i=1}^{2} V_k^i - \frac{1}{16} \sum_{i=1}{4} W_k^i
- * \f]
+ * Similar to LinearTriangleCellSubdivisionQuadEdgeMeshFilter, except that new vertices created using butterfly
+ * neighborhood: \f[ NV_k = \frac{1}{2} \sum_{i=1}{2} U_k^i + \frac{1}{8} \sum_{i=1}^{2} V_k^i - \frac{1}{16}
+ * \sum_{i=1}{4} W_k^i \f]
  *
  * \ingroup SubdivisionQuadEdgeMeshFilter
  */
-template< typename TInputMesh, typename TOutputMesh >
-class ModifiedButterflyTriangleCellSubdivisionQuadEdgeMeshFilter:
-  public TriangleCellSubdivisionQuadEdgeMeshFilter< TInputMesh, TOutputMesh >
+template <typename TInputMesh, typename TOutputMesh>
+class ModifiedButterflyTriangleCellSubdivisionQuadEdgeMeshFilter
+  : public TriangleCellSubdivisionQuadEdgeMeshFilter<TInputMesh, TOutputMesh>
 {
 public:
   ITK_DISALLOW_COPY_AND_ASSIGN(ModifiedButterflyTriangleCellSubdivisionQuadEdgeMeshFilter);
 
   using Self = ModifiedButterflyTriangleCellSubdivisionQuadEdgeMeshFilter;
-  using Superclass = TriangleCellSubdivisionQuadEdgeMeshFilter< TInputMesh, TOutputMesh >;
-  using Pointer = SmartPointer< Self >;
-  using ConstPointer = SmartPointer< const Self >;
+  using Superclass = TriangleCellSubdivisionQuadEdgeMeshFilter<TInputMesh, TOutputMesh>;
+  using Pointer = SmartPointer<Self>;
+  using ConstPointer = SmartPointer<const Self>;
 
   using InputMeshType = typename Superclass::InputMeshType;
   using InputMeshPointer = typename Superclass::InputMeshPointer;
@@ -80,20 +79,21 @@ public:
   using EdgePointIdentifierContainerConstIterator = typename Superclass::EdgePointIdentifierContainerConstIterator;
 
   /** Run-time type information (and related methods).   */
-  itkTypeMacro( ModifiedButterflyTriangleCellSubdivisionQuadEdgeMeshFilter, TriangleCellSubdivisionQuadEdgeMeshFilter );
+  itkTypeMacro(ModifiedButterflyTriangleCellSubdivisionQuadEdgeMeshFilter, TriangleCellSubdivisionQuadEdgeMeshFilter);
 
   /** New macro for creation of through a Smart Pointer   */
-  itkNewMacro( Self );
+  itkNewMacro(Self);
 
 protected:
   ModifiedButterflyTriangleCellSubdivisionQuadEdgeMeshFilter() {}
   ~ModifiedButterflyTriangleCellSubdivisionQuadEdgeMeshFilter() override {}
 
-  void AddNewCellPoints( InputCellType *cell ) override;
+  void
+  AddNewCellPoints(InputCellType * cell) override;
 };
-}
+} // namespace itk
 #ifndef ITK_MANUAL_INSTANTIATION
-#include "itkModifiedButterflyTriangleCellSubdivisionQuadEdgeMeshFilter.hxx"
+#  include "itkModifiedButterflyTriangleCellSubdivisionQuadEdgeMeshFilter.hxx"
 #endif
 
 #endif
