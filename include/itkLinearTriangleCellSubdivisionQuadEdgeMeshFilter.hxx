@@ -22,53 +22,52 @@
 
 namespace itk
 {
-template< typename TInputMesh, typename TOutputMesh >
+template <typename TInputMesh, typename TOutputMesh>
 void
-LinearTriangleCellSubdivisionQuadEdgeMeshFilter< TInputMesh, TOutputMesh >
-::AddNewCellPoints( InputCellType *cell )
+LinearTriangleCellSubdivisionQuadEdgeMeshFilter<TInputMesh, TOutputMesh>::AddNewCellPoints(InputCellType * cell)
 {
-  if ( cell->GetType() != InputCellType::POLYGON_CELL || cell->GetNumberOfPoints() != 3 )
-    {
-    itkExceptionMacro( <<" The input cell is not a triangle cell" );
-    }
+  if (cell->GetType() != InputCellType::POLYGON_CELL || cell->GetNumberOfPoints() != 3)
+  {
+    itkExceptionMacro(<< " The input cell is not a triangle cell");
+  }
 
   OutputMeshType * output = this->GetOutput();
 
   InputPointIdentifier pointIdArray[3];
   InputPointType       pointArray[3];
 
-  InputPointIdIterator it = cell->PointIdsBegin();
+  InputPointIdIterator  it = cell->PointIdsBegin();
   OutputPointIdentifier n = 0;
   OutputPointIdentifier numberOfPoints = output->GetNumberOfPoints();
 
-  while ( it != cell->PointIdsEnd() )
-    {
+  while (it != cell->PointIdsEnd())
+  {
     pointIdArray[n] = *it;
-    this->GetOutput()->GetPoint( *it, &pointArray[n] );
+    this->GetOutput()->GetPoint(*it, &pointArray[n]);
     ++it;
     ++n;
-    }
+  }
 
-  for ( unsigned int ii = 0; ii < 3; ++ii )
+  for (unsigned int ii = 0; ii < 3; ++ii)
+  {
+    unsigned int jj = (ii + 1) % 3;
+
+    InputQEType * edge = this->GetInput()->FindEdge(pointIdArray[ii], pointIdArray[jj]);
+
+    if (!this->m_EdgesPointIdentifier->IndexExists(edge))
     {
-    unsigned int jj = ( ii + 1 ) % 3;
-
-    InputQEType *edge = this->GetInput()->FindEdge( pointIdArray[ii], pointIdArray[jj] );
-
-    if ( !this->m_EdgesPointIdentifier->IndexExists( edge ) )
-      {
       InputPointType  newPoint;
       OutputPointType outPoint;
-      newPoint.SetToMidPoint( pointArray[ii], pointArray[jj] );
-      outPoint.CastFrom( newPoint );
+      newPoint.SetToMidPoint(pointArray[ii], pointArray[jj]);
+      outPoint.CastFrom(newPoint);
 
-      this->m_EdgesPointIdentifier->InsertElement( edge, numberOfPoints );
-      this->m_EdgesPointIdentifier->InsertElement( edge->GetSym(), numberOfPoints );
-      output->SetPoint( numberOfPoints, outPoint );
+      this->m_EdgesPointIdentifier->InsertElement(edge, numberOfPoints);
+      this->m_EdgesPointIdentifier->InsertElement(edge->GetSym(), numberOfPoints);
+      output->SetPoint(numberOfPoints, outPoint);
 
       ++numberOfPoints;
-      }
     }
+  }
 }
-}
+} // namespace itk
 #endif

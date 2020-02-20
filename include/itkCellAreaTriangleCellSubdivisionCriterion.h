@@ -32,14 +32,14 @@ namespace itk
  *\brief
  *\ingroup SubdivisionQuadEdgeMeshFilter
  */
-template< typename TSubdivisionFilter >
-class CellAreaTriangleCellSubdivisionCriterion : public QuadEdgeMeshSubdivisionCriterion< TSubdivisionFilter >
+template <typename TSubdivisionFilter>
+class CellAreaTriangleCellSubdivisionCriterion : public QuadEdgeMeshSubdivisionCriterion<TSubdivisionFilter>
 {
 public:
   using Self = CellAreaTriangleCellSubdivisionCriterion;
-  using Superclass = QuadEdgeMeshSubdivisionCriterion< TSubdivisionFilter >;
-  using Pointer = SmartPointer< Self >;
-  using ConstPointer = SmartPointer< const Self >;
+  using Superclass = QuadEdgeMeshSubdivisionCriterion<TSubdivisionFilter>;
+  using Pointer = SmartPointer<Self>;
+  using ConstPointer = SmartPointer<const Self>;
 
   using MeshType = typename Superclass::MeshType;
   using MeshPointer = typename Superclass::MeshPointer;
@@ -61,25 +61,26 @@ public:
   using SubdivisionCellContainer = typename Superclass::SubdivisionCellContainer;
 
   /** Run-time type information (and related methods).   */
-  itkTypeMacro( CellAreaTriangleCellSubdivisionCriterion, QuadEdgeMeshTriangleCellSubdivisionCriterion );
-  itkNewMacro( Self );
+  itkTypeMacro(CellAreaTriangleCellSubdivisionCriterion, QuadEdgeMeshTriangleCellSubdivisionCriterion);
+  itkNewMacro(Self);
 
-  void Compute( MeshType * mesh, SubdivisionCellContainer & cellIds ) override;
+  void
+  Compute(MeshType * mesh, SubdivisionCellContainer & cellIds) override;
 
-  itkGetConstMacro( MaximumArea, CoordRepType );
-  itkSetMacro( MaximumArea, CoordRepType );
+  itkGetConstMacro(MaximumArea, CoordRepType);
+  itkSetMacro(MaximumArea, CoordRepType);
 
 protected:
-  CellAreaTriangleCellSubdivisionCriterion(){ m_MaximumArea = NumericTraits< CoordRepType >::max(); }
-  ~CellAreaTriangleCellSubdivisionCriterion() override{}
+  CellAreaTriangleCellSubdivisionCriterion() { m_MaximumArea = NumericTraits<CoordRepType>::max(); }
+  ~CellAreaTriangleCellSubdivisionCriterion() override {}
 
 private:
   CoordRepType m_MaximumArea;
 };
 
-}
+} // namespace itk
 #ifndef ITK_MANUAL_INSTANTIATION
-#include "itkCellAreaTriangleCellSubdivisionCriterion.hxx"
+#  include "itkCellAreaTriangleCellSubdivisionCriterion.hxx"
 #endif
 
 #endif

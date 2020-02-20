@@ -23,47 +23,47 @@
 
 namespace itk
 {
-template< typename TTriangleCellSubdivisionFilter >
+template <typename TTriangleCellSubdivisionFilter>
 void
-CellAreaTriangleCellSubdivisionCriterion< TTriangleCellSubdivisionFilter >
-::Compute( MeshType * mesh, SubdivisionCellContainer & cellIds )
+CellAreaTriangleCellSubdivisionCriterion<TTriangleCellSubdivisionFilter>::Compute(MeshType *                 mesh,
+                                                                                  SubdivisionCellContainer & cellIds)
 {
   cellIds.clear();
   const CellsContainer * cells = mesh->GetCells();
-  if( !cells )
-    {
-    itkExceptionMacro( "<<Input mesh has not cells" );
-    }
+  if (!cells)
+  {
+    itkExceptionMacro("<<Input mesh has not cells");
+  }
 
   CellsContainerConstIterator cter = cells->Begin();
-  while( cter != cells->End() )
-    {
+  while (cter != cells->End())
+  {
     CellType * cell = cter->Value();
-    if ( !cell || cell->GetType() != CellType::POLYGON_CELL || cell->GetNumberOfPoints() != 3 )
-      {
+    if (!cell || cell->GetType() != CellType::POLYGON_CELL || cell->GetNumberOfPoints() != 3)
+    {
       continue;
-      }
+    }
 
-    PointType pointArray[3];
+    PointType       pointArray[3];
     PointIdIterator pter = cell->PointIdsBegin();
     PointIdentifier nn = 0;
 
-    while ( pter != cell->PointIdsEnd() )
-      {
-      mesh->GetPoint( *pter,&pointArray[nn] );
+    while (pter != cell->PointIdsEnd())
+    {
+      mesh->GetPoint(*pter, &pointArray[nn]);
       ++pter;
       ++nn;
-      }
+    }
 
-    CoordRepType area = TriangleHelper<PointType>::ComputeArea( pointArray[0], pointArray[1], pointArray[2] );
-    if( area > m_MaximumArea )
-      {
-      cellIds.push_back( static_cast<typename SubdivisionCellContainer::value_type>( cter->Index() ) );
-      }
+    CoordRepType area = TriangleHelper<PointType>::ComputeArea(pointArray[0], pointArray[1], pointArray[2]);
+    if (area > m_MaximumArea)
+    {
+      cellIds.push_back(static_cast<typename SubdivisionCellContainer::value_type>(cter->Index()));
+    }
 
     ++cter;
-    }
+  }
 }
 
-}
+} // namespace itk
 #endif

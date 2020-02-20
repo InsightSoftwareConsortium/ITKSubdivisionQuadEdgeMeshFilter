@@ -31,14 +31,14 @@ namespace itk
  *\brief
  *\ingroup SubdivisionQuadEdgeMeshFilter
  */
-template< typename TSubdivisionFilter >
-class EdgeLengthTriangleEdgeCellSubdivisionCriterion : public QuadEdgeMeshSubdivisionCriterion< TSubdivisionFilter >
+template <typename TSubdivisionFilter>
+class EdgeLengthTriangleEdgeCellSubdivisionCriterion : public QuadEdgeMeshSubdivisionCriterion<TSubdivisionFilter>
 {
 public:
   using Self = EdgeLengthTriangleEdgeCellSubdivisionCriterion;
-  using Superclass = QuadEdgeMeshSubdivisionCriterion< TSubdivisionFilter >;
-  using Pointer = SmartPointer< Self >;
-  using ConstPointer = SmartPointer< const Self >;
+  using Superclass = QuadEdgeMeshSubdivisionCriterion<TSubdivisionFilter>;
+  using Pointer = SmartPointer<Self>;
+  using ConstPointer = SmartPointer<const Self>;
 
   using MeshType = typename Superclass::MeshType;
   using MeshPointer = typename Superclass::MeshPointer;
@@ -60,25 +60,26 @@ public:
   using SubdivisionCellContainer = typename Superclass::SubdivisionCellContainer;
 
   /** Run-time type information (and related methods).   */
-  itkTypeMacro( EdgeLengthTriangleEdgeCellSubdivisionCriterion, QuadEdgeMeshSubdivisionCriterion );
-  itkNewMacro( Self );
+  itkTypeMacro(EdgeLengthTriangleEdgeCellSubdivisionCriterion, QuadEdgeMeshSubdivisionCriterion);
+  itkNewMacro(Self);
 
-  void Compute( MeshType * mesh, SubdivisionCellContainer & edgeList ) override;
+  void
+  Compute(MeshType * mesh, SubdivisionCellContainer & edgeList) override;
 
   itkGetConstMacro(MaximumLength, CoordRepType);
   itkSetMacro(MaximumLength, CoordRepType);
 
 protected:
-  EdgeLengthTriangleEdgeCellSubdivisionCriterion(){ m_MaximumLength = NumericTraits< CoordRepType >::max(); }
-  ~EdgeLengthTriangleEdgeCellSubdivisionCriterion() override{}
+  EdgeLengthTriangleEdgeCellSubdivisionCriterion() { m_MaximumLength = NumericTraits<CoordRepType>::max(); }
+  ~EdgeLengthTriangleEdgeCellSubdivisionCriterion() override {}
 
 private:
   CoordRepType m_MaximumLength;
 };
 
-}
+} // namespace itk
 #ifndef ITK_MANUAL_INSTANTIATION
-#include "itkEdgeLengthTriangleEdgeCellSubdivisionCriterion.hxx"
+#  include "itkEdgeLengthTriangleEdgeCellSubdivisionCriterion.hxx"
 #endif
 
 #endif

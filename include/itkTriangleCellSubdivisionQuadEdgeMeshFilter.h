@@ -35,17 +35,16 @@ namespace itk
  *
  * \ingroup SubdivisionQuadEdgeMeshFilter
  */
-template< typename TInputMesh, typename TOutputMesh >
-class TriangleCellSubdivisionQuadEdgeMeshFilter:
-  public SubdivisionQuadEdgeMeshFilter< TInputMesh, TOutputMesh >
+template <typename TInputMesh, typename TOutputMesh>
+class TriangleCellSubdivisionQuadEdgeMeshFilter : public SubdivisionQuadEdgeMeshFilter<TInputMesh, TOutputMesh>
 {
 public:
   ITK_DISALLOW_COPY_AND_ASSIGN(TriangleCellSubdivisionQuadEdgeMeshFilter);
 
   using Self = TriangleCellSubdivisionQuadEdgeMeshFilter;
-  using Superclass = SubdivisionQuadEdgeMeshFilter< TInputMesh, TOutputMesh >;
-  using Pointer = SmartPointer< Self >;
-  using ConstPointer = SmartPointer< const Self >;
+  using Superclass = SubdivisionQuadEdgeMeshFilter<TInputMesh, TOutputMesh>;
+  using Pointer = SmartPointer<Self>;
+  using ConstPointer = SmartPointer<const Self>;
 
   using InputMeshType = typename Superclass::InputMeshType;
   using InputMeshPointer = typename Superclass::InputMeshPointer;
@@ -84,45 +83,54 @@ public:
   using OutputMeshTraits = typename Superclass::OutputMeshTraits;
   using OutputPointIdIterator = typename Superclass::OutputPointIdIterator;
 
-  using SubdivisionCellContainer = std::list< OutputCellIdentifier >;
+  using SubdivisionCellContainer = std::list<OutputCellIdentifier>;
   using SubdivisionCellContainerConstIterator = typename SubdivisionCellContainer::const_iterator;
 
   /** Run-time type information (and related methods).   */
-  itkTypeMacro( TriangleCellSubdivisionQuadEdgeMeshFilter, SubdivisionQuadEdgeMeshFilter );
-  itkGetConstReferenceMacro( CellsToBeSubdivided, SubdivisionCellContainer );
+  itkTypeMacro(TriangleCellSubdivisionQuadEdgeMeshFilter, SubdivisionQuadEdgeMeshFilter);
+  itkGetConstReferenceMacro(CellsToBeSubdivided, SubdivisionCellContainer);
 
-  void SetCellsToBeSubdivided( const SubdivisionCellContainer & cellIdList );
-  void AddSubdividedCellId( OutputCellIdentifier cellId );
+  void
+  SetCellsToBeSubdivided(const SubdivisionCellContainer & cellIdList);
+  void
+  AddSubdividedCellId(OutputCellIdentifier cellId);
 
 protected:
   TriangleCellSubdivisionQuadEdgeMeshFilter();
   ~TriangleCellSubdivisionQuadEdgeMeshFilter() override {}
 
-  virtual void AddNewCellPoints( InputCellType *cell ) = 0;
-  void GenerateOutputPoints() override;
-  void GenerateOutputCells() override;
+  virtual void
+  AddNewCellPoints(InputCellType * cell) = 0;
+  void
+  GenerateOutputPoints() override;
+  void
+  GenerateOutputCells() override;
 
-  void SplitTriangleFromOneEdge( OutputMeshType * output,
-                                 const OutputPointIdentifier * trianglePointIds,
-                                 const OutputPointIdentifier * edgePointIds,
-                                 const unsigned int * splitEdges );
-  void SplitTriangleFromTwoEdges( OutputMeshType * output,
-                                  const OutputPointIdentifier * trianglePointIds,
-                                  const OutputPointIdentifier * edgePointIds,
-                                  const unsigned int * splitEdges );
-  void SplitTriangleFromThreeEdges( OutputMeshType * output,
-                                    const OutputPointIdentifier * trianglePointIds,
-                                    const OutputPointIdentifier * edgePointIds );
+  void
+  SplitTriangleFromOneEdge(OutputMeshType *              output,
+                           const OutputPointIdentifier * trianglePointIds,
+                           const OutputPointIdentifier * edgePointIds,
+                           const unsigned int *          splitEdges);
+  void
+  SplitTriangleFromTwoEdges(OutputMeshType *              output,
+                            const OutputPointIdentifier * trianglePointIds,
+                            const OutputPointIdentifier * edgePointIds,
+                            const unsigned int *          splitEdges);
+  void
+  SplitTriangleFromThreeEdges(OutputMeshType *              output,
+                              const OutputPointIdentifier * trianglePointIds,
+                              const OutputPointIdentifier * edgePointIds);
 
-  void PrintSelf(std::ostream & os, Indent indent) const override;
+  void
+  PrintSelf(std::ostream & os, Indent indent) const override;
 
-  SubdivisionCellContainer        m_CellsToBeSubdivided;
-  bool                            m_Uniform;
+  SubdivisionCellContainer m_CellsToBeSubdivided;
+  bool                     m_Uniform;
 };
 } // end namespace itk
 
 #ifndef ITK_MANUAL_INSTANTIATION
-#include "itkTriangleCellSubdivisionQuadEdgeMeshFilter.hxx"
+#  include "itkTriangleCellSubdivisionQuadEdgeMeshFilter.hxx"
 #endif
 
 #endif

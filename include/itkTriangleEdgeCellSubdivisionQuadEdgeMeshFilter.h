@@ -29,17 +29,17 @@ namespace itk
  * \brief FIXME
  * \ingroup SubdivisionQuadEdgeMeshFilter
  */
-template< typename TInputMesh, typename TOutputMesh >
-class TriangleEdgeCellSubdivisionQuadEdgeMeshFilter:
-  public TriangleCellSubdivisionQuadEdgeMeshFilter< TInputMesh, TOutputMesh >
+template <typename TInputMesh, typename TOutputMesh>
+class TriangleEdgeCellSubdivisionQuadEdgeMeshFilter
+  : public TriangleCellSubdivisionQuadEdgeMeshFilter<TInputMesh, TOutputMesh>
 {
 public:
   ITK_DISALLOW_COPY_AND_ASSIGN(TriangleEdgeCellSubdivisionQuadEdgeMeshFilter);
 
   using Self = TriangleEdgeCellSubdivisionQuadEdgeMeshFilter;
-  using Superclass = TriangleCellSubdivisionQuadEdgeMeshFilter< TInputMesh, TOutputMesh >;
-  using Pointer = SmartPointer< Self >;
-  using ConstPointer = SmartPointer< const Self >;
+  using Superclass = TriangleCellSubdivisionQuadEdgeMeshFilter<TInputMesh, TOutputMesh>;
+  using Pointer = SmartPointer<Self>;
+  using ConstPointer = SmartPointer<const Self>;
 
   using InputMeshType = typename Superclass::InputMeshType;
   using InputMeshPointer = typename Superclass::InputMeshPointer;
@@ -78,32 +78,39 @@ public:
   using OutputMeshTraits = typename Superclass::OutputMeshTraits;
   using OutputPointIdIterator = typename Superclass::OutputPointIdIterator;
 
-  using SubdivisionCellContainer = std::list< InputQEType * >;
+  using SubdivisionCellContainer = std::list<InputQEType *>;
   using SubdivisionCellContainerConstIterator = typename SubdivisionCellContainer::const_iterator;
 
   /** Run-time type information (and related methods).   */
-  itkTypeMacro( TriangleEdgeCellSubdivisionQuadEdgeMeshFilter, TriangleCellSubdivisionQuadEdgeMeshFilter );
-  itkGetConstReferenceMacro( EdgesToBeSubdivided, SubdivisionCellContainer );
+  itkTypeMacro(TriangleEdgeCellSubdivisionQuadEdgeMeshFilter, TriangleCellSubdivisionQuadEdgeMeshFilter);
+  itkGetConstReferenceMacro(EdgesToBeSubdivided, SubdivisionCellContainer);
 
-  void SetCellsToBeSubdivided( const SubdivisionCellContainer & EdgesList );
-  void AddSubdividedEdge( InputQEType * edge );
+  void
+  SetCellsToBeSubdivided(const SubdivisionCellContainer & EdgesList);
+  void
+  AddSubdividedEdge(InputQEType * edge);
 
 protected:
   TriangleEdgeCellSubdivisionQuadEdgeMeshFilter();
   ~TriangleEdgeCellSubdivisionQuadEdgeMeshFilter() override {}
 
-  void AddNewCellPoints( InputCellType * itkNotUsed( cell ) ) override {}
-  virtual void AddNewEdgePoints( InputQEType * edge ) = 0;
-  void GenerateOutputPoints() override;
+  void
+  AddNewCellPoints(InputCellType * itkNotUsed(cell)) override
+  {}
+  virtual void
+  AddNewEdgePoints(InputQEType * edge) = 0;
+  void
+  GenerateOutputPoints() override;
 
-  void PrintSelf( std::ostream & os, Indent indent ) const override;
+  void
+  PrintSelf(std::ostream & os, Indent indent) const override;
 
-  SubdivisionCellContainer    m_EdgesToBeSubdivided;
+  SubdivisionCellContainer m_EdgesToBeSubdivided;
 };
 } // end namespace itk
 
 #ifndef ITK_MANUAL_INSTANTIATION
-#include "itkTriangleEdgeCellSubdivisionQuadEdgeMeshFilter.hxx"
+#  include "itkTriangleEdgeCellSubdivisionQuadEdgeMeshFilter.hxx"
 #endif
 
 #endif

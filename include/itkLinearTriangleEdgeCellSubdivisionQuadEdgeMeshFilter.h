@@ -29,17 +29,17 @@ namespace itk
  * \brief FIXME     Add documentation here
  * \ingroup SubdivisionQuadEdgeMeshFilter
  */
-template< typename TInputMesh, typename TOutputMesh >
-class LinearTriangleEdgeCellSubdivisionQuadEdgeMeshFilter:
-  public TriangleEdgeCellSubdivisionQuadEdgeMeshFilter< TInputMesh, TOutputMesh >
+template <typename TInputMesh, typename TOutputMesh>
+class LinearTriangleEdgeCellSubdivisionQuadEdgeMeshFilter
+  : public TriangleEdgeCellSubdivisionQuadEdgeMeshFilter<TInputMesh, TOutputMesh>
 {
 public:
   ITK_DISALLOW_COPY_AND_ASSIGN(LinearTriangleEdgeCellSubdivisionQuadEdgeMeshFilter);
 
   using Self = LinearTriangleEdgeCellSubdivisionQuadEdgeMeshFilter;
-  using Superclass = TriangleEdgeCellSubdivisionQuadEdgeMeshFilter< TInputMesh, TOutputMesh >;
-  using Pointer = SmartPointer< Self >;
-  using ConstPointer = SmartPointer< const Self >;
+  using Superclass = TriangleEdgeCellSubdivisionQuadEdgeMeshFilter<TInputMesh, TOutputMesh>;
+  using Pointer = SmartPointer<Self>;
+  using ConstPointer = SmartPointer<const Self>;
 
   using InputMeshType = typename Superclass::InputMeshType;
   using InputMeshPointer = typename Superclass::InputMeshPointer;
@@ -76,22 +76,22 @@ public:
   using OutputPointIdIterator = typename Superclass::OutputPointIdIterator;
 
   /** Run-time type information (and related methods).   */
-  itkTypeMacro( LinearTriangleEdgeCellSubdivisionQuadEdgeMeshFilter,
-               TriangleEdgeCellSubdivisionQuadEdgeMeshFilter );
+  itkTypeMacro(LinearTriangleEdgeCellSubdivisionQuadEdgeMeshFilter, TriangleEdgeCellSubdivisionQuadEdgeMeshFilter);
 
   /** New macro for creation of through a Smart Pointer   */
-  itkNewMacro( Self );
+  itkNewMacro(Self);
 
 protected:
   LinearTriangleEdgeCellSubdivisionQuadEdgeMeshFilter() {}
   ~LinearTriangleEdgeCellSubdivisionQuadEdgeMeshFilter() override {}
 
-  void AddNewEdgePoints( InputQEType * edge ) override;
+  void
+  AddNewEdgePoints(InputQEType * edge) override;
 };
-}
+} // namespace itk
 
 #ifndef ITK_MANUAL_INSTANTIATION
-#include "itkLinearTriangleEdgeCellSubdivisionQuadEdgeMeshFilter.hxx"
+#  include "itkLinearTriangleEdgeCellSubdivisionQuadEdgeMeshFilter.hxx"
 #endif
 
 #endif

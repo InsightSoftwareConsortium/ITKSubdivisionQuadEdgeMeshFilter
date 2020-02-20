@@ -23,31 +23,27 @@
 
 namespace itk
 {
-template< typename TInputMesh, typename TOutputMesh >
-SubdivisionQuadEdgeMeshFilter< TInputMesh, TOutputMesh >
-::SubdivisionQuadEdgeMeshFilter()
+template <typename TInputMesh, typename TOutputMesh>
+SubdivisionQuadEdgeMeshFilter<TInputMesh, TOutputMesh>::SubdivisionQuadEdgeMeshFilter()
 {
   this->m_EdgesPointIdentifier = EdgePointIdentifierContainer::New();
 }
 
-template< typename TInputMesh, typename TOutputMesh >
+template <typename TInputMesh, typename TOutputMesh>
 void
-SubdivisionQuadEdgeMeshFilter< TInputMesh, TOutputMesh >
-::GenerateData()
+SubdivisionQuadEdgeMeshFilter<TInputMesh, TOutputMesh>::GenerateData()
 {
 
   this->GenerateOutputPoints();
 
   this->GenerateOutputCells();
-
 }
 
-template< typename TInputMesh, typename TOutputMesh >
+template <typename TInputMesh, typename TOutputMesh>
 void
-SubdivisionQuadEdgeMeshFilter< TInputMesh, TOutputMesh >
-::PrintSelf( std::ostream & os, Indent indent ) const
+SubdivisionQuadEdgeMeshFilter<TInputMesh, TOutputMesh>::PrintSelf(std::ostream & os, Indent indent) const
 {
-  Superclass::PrintSelf( os, indent );
+  Superclass::PrintSelf(os, indent);
 }
-}
+} // namespace itk
 #endif

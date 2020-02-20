@@ -27,46 +27,48 @@
 #include "itkMeshFileReader.h"
 #include "itkMeshFileWriter.h"
 
-template< typename TTriangleCellSubdivisionFilter >
-int TriangleCellSubdivisionQuadEdgeMeshFilterTest( int argc, char *argv[] )
+template <typename TTriangleCellSubdivisionFilter>
+int
+TriangleCellSubdivisionQuadEdgeMeshFilterTest(int argc, char * argv[])
 {
   using TriangleCellSubdivisionFilterType = TTriangleCellSubdivisionFilter;
 
   using InputMeshType = typename TriangleCellSubdivisionFilterType::InputMeshType;
   using OutputMeshType = typename TriangleCellSubdivisionFilterType::OutputMeshType;
 
-  using IterativeTriangleCellSubdivisionFilterType = itk::IterativeTriangleCellSubdivisionQuadEdgeMeshFilter< InputMeshType, TriangleCellSubdivisionFilterType >;
+  using IterativeTriangleCellSubdivisionFilterType =
+    itk::IterativeTriangleCellSubdivisionQuadEdgeMeshFilter<InputMeshType, TriangleCellSubdivisionFilterType>;
   using IterativeTriangleCellSubdivisionFilterPointer = typename IterativeTriangleCellSubdivisionFilterType::Pointer;
 
-  using ReaderType = itk::MeshFileReader< InputMeshType >;
-  using WriterType = itk::MeshFileWriter< OutputMeshType >;
+  using ReaderType = itk::MeshFileReader<InputMeshType>;
+  using WriterType = itk::MeshFileWriter<OutputMeshType>;
 
   typename ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName( argv[1] );
+  reader->SetFileName(argv[1]);
   try
-    {
+  {
     reader->Update();
-    }
-  catch ( itk::ExceptionObject & exp )
-    {
+  }
+  catch (itk::ExceptionObject & exp)
+  {
     std::cerr << "Exception thrown while reading the input file " << std::endl;
     std::cerr << exp << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   IterativeTriangleCellSubdivisionFilterPointer subdivision = IterativeTriangleCellSubdivisionFilterType::New();
 
-  if ( argc >= 5 )
-    {
+  if (argc >= 5)
+  {
     unsigned int n = std::atoi(argv[4]);
     subdivision->SetResolutionLevels(n);
-    }
+  }
 
-  if ( argc >= 6 )
-    {
+  if (argc >= 6)
+  {
     int type = std::atoi(argv[5]);
-    if ( type )
-      {
+    if (type)
+    {
       typename IterativeTriangleCellSubdivisionFilterType::SubdivisionCellContainer cellsToBeSubdivided;
 
       cellsToBeSubdivided.push_back(0);
@@ -78,9 +80,9 @@ int TriangleCellSubdivisionQuadEdgeMeshFilterTest( int argc, char *argv[] )
       cellsToBeSubdivided.push_back(9);
 
       subdivision->SetCellsToBeSubdivided(cellsToBeSubdivided);
-      }
+    }
     else
-      {
+    {
       subdivision->AddSubdividedCellId(0);
       subdivision->AddSubdividedCellId(1);
       subdivision->AddSubdividedCellId(2);
@@ -88,57 +90,58 @@ int TriangleCellSubdivisionQuadEdgeMeshFilterTest( int argc, char *argv[] )
       subdivision->AddSubdividedCellId(5);
       subdivision->AddSubdividedCellId(6);
       subdivision->AddSubdividedCellId(9);
-      }
     }
+  }
 
-  subdivision->SetInput( reader->GetOutput() );
+  subdivision->SetInput(reader->GetOutput());
   subdivision->Update();
   typename OutputMeshType::Pointer output = subdivision->GetOutput();
 
   bool smoothing = true;
-  if ( argc >= 7 )
+  if (argc >= 7)
   {
-  smoothing = false;
+    smoothing = false;
   }
 
-  if ( smoothing )
-    {
-    using OutputMeshSmoothingFilterType = itk::SmoothingQuadEdgeMeshFilter< OutputMeshType, OutputMeshType >;
-    using OnesMatrixCoefficientsType = itk::OnesMatrixCoefficients< OutputMeshType >;
+  if (smoothing)
+  {
+    using OutputMeshSmoothingFilterType = itk::SmoothingQuadEdgeMeshFilter<OutputMeshType, OutputMeshType>;
+    using OnesMatrixCoefficientsType = itk::OnesMatrixCoefficients<OutputMeshType>;
 
-    OnesMatrixCoefficientsType coef;
+    OnesMatrixCoefficientsType                      coef;
     typename OutputMeshSmoothingFilterType::Pointer meshSmoothingFilter = OutputMeshSmoothingFilterType::New();
-    meshSmoothingFilter->SetInput( output );
+    meshSmoothingFilter->SetInput(output);
     meshSmoothingFilter->SetCoefficientsMethod(&coef);
     meshSmoothingFilter->SetDelaunayConforming(1);
     meshSmoothingFilter->SetNumberOfIterations(1);
     meshSmoothingFilter->Update();
 
-    output->Graft( meshSmoothingFilter->GetOutput() );
-    }
+    output->Graft(meshSmoothingFilter->GetOutput());
+  }
 
   typename WriterType::Pointer writer = WriterType::New();
   writer->SetFileName(argv[2]);
-  writer->SetInput( output );
+  writer->SetInput(output);
 
   try
-    {
+  {
     writer->Update();
-    }
-  catch ( itk::ExceptionObject & exp )
-    {
+  }
+  catch (itk::ExceptionObject & exp)
+  {
     std::cerr << "Exception thrown while writting the output file " << std::endl;
     std::cerr << exp << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   return EXIT_SUCCESS;
 }
 
-int itkTriangleCellSubdivisionQuadEdgeMeshFilterTest(int argc, char *argv[])
+int
+itkTriangleCellSubdivisionQuadEdgeMeshFilterTest(int argc, char * argv[])
 {
-  if ( argc < 3 )
-    {
+  if (argc < 3)
+  {
     std::cerr << "Missing Parameters " << std::endl;
     std::cerr << "Usage: " << argv[0];
     std::cerr << " inputMeshFile  outputMeshFile subdivisionType Resolution non-uniform" << std::endl;
@@ -147,42 +150,44 @@ int itkTriangleCellSubdivisionQuadEdgeMeshFilterTest(int argc, char *argv[])
     std::cerr << " 2 : Loop " << std::endl;
     std::cerr << " 3 : Squarethree " << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   using MeshPixelType = float;
   constexpr unsigned int Dimension = 3;
 
-  using MeshType = itk::QuadEdgeMesh< MeshPixelType, Dimension >;
+  using MeshType = itk::QuadEdgeMesh<MeshPixelType, Dimension>;
 
-  using ModifiedButterflySubdivisionFilterType = itk::ModifiedButterflyTriangleCellSubdivisionQuadEdgeMeshFilter< MeshType, MeshType >;
-  using LinearSubdivisionFilterType = itk::LinearTriangleCellSubdivisionQuadEdgeMeshFilter< MeshType, MeshType >;
-  using LoopSubdivisionFilterType = itk::LoopTriangleCellSubdivisionQuadEdgeMeshFilter< MeshType, MeshType >;
-  using SquareThreeSubdivisionFilterType = itk::SquareThreeTriangleCellSubdivisionQuadEdgeMeshFilter< MeshType, MeshType >;
+  using ModifiedButterflySubdivisionFilterType =
+    itk::ModifiedButterflyTriangleCellSubdivisionQuadEdgeMeshFilter<MeshType, MeshType>;
+  using LinearSubdivisionFilterType = itk::LinearTriangleCellSubdivisionQuadEdgeMeshFilter<MeshType, MeshType>;
+  using LoopSubdivisionFilterType = itk::LoopTriangleCellSubdivisionQuadEdgeMeshFilter<MeshType, MeshType>;
+  using SquareThreeSubdivisionFilterType =
+    itk::SquareThreeTriangleCellSubdivisionQuadEdgeMeshFilter<MeshType, MeshType>;
 
-  if ( argc >= 4 )
-    {
+  if (argc >= 4)
+  {
     int type = std::atoi(argv[3]);
 
-    switch ( type )
-      {
+    switch (type)
+    {
       case 0:
-        return TriangleCellSubdivisionQuadEdgeMeshFilterTest< ModifiedButterflySubdivisionFilterType >( argc, argv );
+        return TriangleCellSubdivisionQuadEdgeMeshFilterTest<ModifiedButterflySubdivisionFilterType>(argc, argv);
       case 1:
-        return TriangleCellSubdivisionQuadEdgeMeshFilterTest< LinearSubdivisionFilterType >( argc, argv );
+        return TriangleCellSubdivisionQuadEdgeMeshFilterTest<LinearSubdivisionFilterType>(argc, argv);
       case 2:
-        return TriangleCellSubdivisionQuadEdgeMeshFilterTest< LoopSubdivisionFilterType >( argc, argv );
+        return TriangleCellSubdivisionQuadEdgeMeshFilterTest<LoopSubdivisionFilterType>(argc, argv);
       case 3:
-        return TriangleCellSubdivisionQuadEdgeMeshFilterTest< SquareThreeSubdivisionFilterType >( argc, argv );
+        return TriangleCellSubdivisionQuadEdgeMeshFilterTest<SquareThreeSubdivisionFilterType>(argc, argv);
       default:
         std::cerr << "Invalid subdivision type : " << type << std::endl;
         return EXIT_FAILURE;
-      }
     }
+  }
   else
-    {
+  {
     std::cerr << "You must have subdivision type " << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   return EXIT_SUCCESS;
 }

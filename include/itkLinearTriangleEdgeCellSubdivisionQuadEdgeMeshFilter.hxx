@@ -22,28 +22,27 @@
 
 namespace itk
 {
-template< typename TInputMesh, typename TOutputMesh >
+template <typename TInputMesh, typename TOutputMesh>
 void
-LinearTriangleEdgeCellSubdivisionQuadEdgeMeshFilter< TInputMesh, TOutputMesh >
-::AddNewEdgePoints( InputQEType * edge )
+LinearTriangleEdgeCellSubdivisionQuadEdgeMeshFilter<TInputMesh, TOutputMesh>::AddNewEdgePoints(InputQEType * edge)
 {
   OutputMeshType * output = this->GetOutput();
 
   InputPointType pointArray[3];
-  this->GetInput()->GetPoint( edge->GetOrigin(), &pointArray[0] );
-  this->GetInput()->GetPoint( edge->GetDestination(), &pointArray[1] );
-  pointArray[2].SetToMidPoint( pointArray[0], pointArray[1] );
+  this->GetInput()->GetPoint(edge->GetOrigin(), &pointArray[0]);
+  this->GetInput()->GetPoint(edge->GetDestination(), &pointArray[1]);
+  pointArray[2].SetToMidPoint(pointArray[0], pointArray[1]);
 
   OutputPointType outpoint;
-  outpoint.CastFrom( pointArray[2] );
+  outpoint.CastFrom(pointArray[2]);
 
   OutputPointIdentifier numberOfPoints = output->GetNumberOfPoints();
 
-  this->m_EdgesPointIdentifier->InsertElement( edge, numberOfPoints );
-  this->m_EdgesPointIdentifier->InsertElement( edge->GetSym(), numberOfPoints );
-  output->SetPoint( numberOfPoints, outpoint );
+  this->m_EdgesPointIdentifier->InsertElement(edge, numberOfPoints);
+  this->m_EdgesPointIdentifier->InsertElement(edge->GetSym(), numberOfPoints);
+  output->SetPoint(numberOfPoints, outpoint);
 
   return;
 }
-}
+} // namespace itk
 #endif
