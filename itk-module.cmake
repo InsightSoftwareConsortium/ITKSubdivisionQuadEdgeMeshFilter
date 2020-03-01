@@ -16,8 +16,8 @@ itk_module(SubdivisionQuadEdgeMeshFilter
   TEST_DEPENDS
     ITKTestKernel
     ITKIOMesh
-  EXCLUDE_FROM_DEFAULT
   DESCRIPTION
     "${DOCUMENTATION}"
+  EXCLUDE_FROM_DEFAULT
+  # Not used for header only libraries ENABLE_SHARED
 )
-
