@@ -17,5 +17,18 @@ set(WRAPPER_SUBMODULE_ORDER
    itkTriangleCellSubdivisionQuadEdgeMeshFilter
    itkTriangleEdgeCellSubdivisionQuadEdgeMeshFilter)
 
+set(SUBDIVISION_CELL_FILTERS
+   LinearTriangle
+   LoopTriangle
+   ModifiedButterflyTriangle
+   SquareThreeTriangle)
+
+set(SUBDIVISION_EDGE_FILTERS
+   LinearTriangleEdge
+   LoopTriangleEdge
+   ModifiedButterflyTriangleEdge)
+
+set(SUBDIVISION_FILTERS ${SUBDIVISION_CELL_FILTERS} ${SUBDIVISION_EDGE_FILTERS})
+
 itk_auto_load_submodules()
 itk_end_wrap_module()
