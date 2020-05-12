@@ -1,0 +1,21 @@
+set(SUBDIVISION_CLASSES
+  CellAreaTriangleCellSubdivisionCriterion
+  ConditionalSubdivisionQuadEdgeMeshFilter
+  EdgeLengthTriangleEdgeCellSubdivisionCriterion
+  IterativeTriangleCellSubdivisionQuadEdgeMeshFilter
+  LinearTriangleCellSubdivisionQuadEdgeMeshFilter
+  LinearTriangleEdgeCellSubdivisionQuadEdgeMeshFilter
+  LoopTriangleCellSubdivisionQuadEdgeMeshFilter
+  LoopTriangleEdgeCellSubdivisionQuadEdgeMeshFilter
+  ModifiedButterflyTriangleCellSubdivisionQuadEdgeMeshFilter
+  ModifiedButterflyTriangleEdgeCellSubdivisionQuadEdgeMeshFilter
+  SquareThreeTriangleCellSubdivisionQuadEdgeMeshFilter
+  TriangleCellSubdivisionQuadEdgeMeshFilter
+  TriangleEdgeCellSubdivisionQuadEdgeMeshFilter)
+
+foreach(s ${SUBDIVISION_CLASSES})
+
+  itk_python_expression_add_test(NAME itk${s}Test
+   EXPRESSION "instance = itk.${s}.New()")
+
+endforeach()
