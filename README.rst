@@ -1,6 +1,9 @@
 ITKSubdivisionQuadEdgeMeshFilter
 ================================
 
+.. image:: https://github.com/InsightSoftwareConsortium/ITKSubdivisionQuadEdgeMeshFilter/workflows/Build,%20test,%20package/badge.svg
+    :alt:    Build Status
+
 Overview
 --------
 
