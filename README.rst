@@ -17,6 +17,13 @@ For more information, see the `Insight Journal article <http://hdl.handle.net/10
   http://hdl.handle.net/10380/3307
   http://www.insight-journal.org/browse/publication/831
 
+Installation
+------------
+
+Install Python packages with::
+
+  python -m pip install itk-subdivisionquadedgemeshfilter
+
 
 License
 -------
