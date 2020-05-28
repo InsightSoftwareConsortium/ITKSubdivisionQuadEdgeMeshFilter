@@ -4,6 +4,7 @@ set(SubdivisionQuadEdgeMeshFilterTests
 itkCriterionTriangleCellSubdivisionQuadEdgeMeshFilterTest.cxx
 itkCriterionTriangleEdgeCellSubdivisionQuadEdgeMeshFilterTest.cxx
 itkTriangleCellSubdivisionQuadEdgeMeshFilterTest.cxx
+itkTriangleCellSubdivisionQuadEdgeMeshFilterCellDataTest.cxx
 itkTriangleEdgeCellSubdivisionQuadEdgeMeshFilterTest.cxx
 )
 
@@ -142,3 +143,7 @@ itk_add_test(NAME itkCriterionLoopTriangleEdgeCellSubdivisionQuadEdgeMeshFilterT
   COMMAND SubdivisionQuadEdgeMeshFilterTestDriver
   itkCriterionTriangleEdgeCellSubdivisionQuadEdgeMeshFilterTest
   DATA{${INPUTDATA}/venus.vtk} ${TEMP}/venus_criterion_edge_loop.vtk 2 0.05)
+
+itk_add_test(NAME itkTriangleCellSubdivisionQuadEdgeMeshFilterCellDataTest
+  COMMAND SubdivisionQuadEdgeMeshFilterTestDriver
+  itkTriangleCellSubdivisionQuadEdgeMeshFilterCellDataTest)
