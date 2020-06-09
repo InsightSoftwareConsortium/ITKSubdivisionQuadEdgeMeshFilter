@@ -13,7 +13,7 @@ except ImportError:
 
 setup(
     name='itk-subdivisionquadedgemeshfilter',
-    version='1.0.0',
+    version='1.1.0',
     author='Wanlin Zhu',
     author_email='wanlin.zhu@unsw.edu.au',
     packages=['itk'],
@@ -48,6 +48,6 @@ setup(
     keywords='ITK InsightToolkit Geometry Mesh',
     url=r'https://github.com/InsightSoftwareConsortium/ITKSubdivisionQuadEdgeMeshFilter',
     install_requires=[
-        r'itk'
+        r'itk>=5.1.0.post2'
     ]
     )
