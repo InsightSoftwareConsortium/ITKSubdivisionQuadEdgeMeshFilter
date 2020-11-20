@@ -13,7 +13,7 @@ except ImportError:
 
 setup(
     name='itk-subdivisionquadedgemeshfilter',
-    version='1.1.0',
+    version='1.2.0',
     author='Wanlin Zhu',
     author_email='wanlin.zhu@unsw.edu.au',
     packages=['itk'],
