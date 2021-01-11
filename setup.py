@@ -48,6 +48,6 @@ setup(
     keywords='ITK InsightToolkit Geometry Mesh',
     url=r'https://github.com/InsightSoftwareConsortium/ITKSubdivisionQuadEdgeMeshFilter',
     install_requires=[
-        r'itk>=5.1.1'
+        r'itk>=5.2rc1'
     ]
     )
