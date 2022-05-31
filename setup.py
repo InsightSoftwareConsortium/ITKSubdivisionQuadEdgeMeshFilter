@@ -24,7 +24,7 @@ setup(
                      'triangle mesh subdivision.\n'
                      'Please refer to:\n'
                      'W. Zhu, "Triangle Mesh Subdivision.", '
-                     'Insight Journal, July-December 2011, http://hdl.handle.net/10380/3307.',
+                     'Insight Journal, July-December 2011, https://hdl.handle.net/10380/3307.',
     classifiers=[
         "License :: OSI Approved :: Apache Software License",
         "Programming Language :: Python",
