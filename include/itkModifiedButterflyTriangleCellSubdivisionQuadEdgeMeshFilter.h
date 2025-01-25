@@ -79,7 +79,7 @@ public:
   using EdgePointIdentifierContainerConstIterator = typename Superclass::EdgePointIdentifierContainerConstIterator;
 
   /** Run-time type information (and related methods).   */
-   itkOverrideGetNameOfClassMacro(ModifiedButterflyTriangleCellSubdivisionQuadEdgeMeshFilter);
+  itkOverrideGetNameOfClassMacro(ModifiedButterflyTriangleCellSubdivisionQuadEdgeMeshFilter);
 
   /** New macro for creation of through a Smart Pointer   */
   itkNewMacro(Self);

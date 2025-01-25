@@ -61,7 +61,7 @@ public:
   using SubdivisionCellContainer = typename Superclass::SubdivisionCellContainer;
 
   /** Run-time type information (and related methods).   */
-   itkOverrideGetNameOfClassMacro(CellAreaTriangleCellSubdivisionCriterion);
+  itkOverrideGetNameOfClassMacro(CellAreaTriangleCellSubdivisionCriterion);
   itkNewMacro(Self);
 
   void

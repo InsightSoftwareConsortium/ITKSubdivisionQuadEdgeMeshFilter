@@ -59,7 +59,7 @@ public:
     typename CellSubdivisionFilterType::SubdivisionCellContainerConstIterator;
 
   /** Run-time type information (and related methods).   */
-   itkOverrideGetNameOfClassMacro(IterativeTriangleCellSubdivisionQuadEdgeMeshFilter);
+  itkOverrideGetNameOfClassMacro(IterativeTriangleCellSubdivisionQuadEdgeMeshFilter);
   itkNewMacro(Self);
 
 #ifdef ITK_USE_CONCEPT_CHECKING
