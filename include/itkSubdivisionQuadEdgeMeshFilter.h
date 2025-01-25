@@ -90,7 +90,7 @@ public:
   using EdgePointIdentifierContainerConstIterator = typename EdgePointIdentifierContainer::ConstIterator;
 
   /** Run-time type information (and related methods).   */
-   itkOverrideGetNameOfClassMacro(SubdivisionQuadEdgeMeshFilter);
+  itkOverrideGetNameOfClassMacro(SubdivisionQuadEdgeMeshFilter);
 
 protected:
   SubdivisionQuadEdgeMeshFilter();
